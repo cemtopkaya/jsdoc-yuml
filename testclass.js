@@ -11,6 +11,8 @@ class Sinif extends Point {
      */
     constructor(x, y, width) {
         // ...
+        /** @property {number} */
+        this.X = x;
     }
 
     /**
@@ -18,6 +20,24 @@ class Sinif extends Point {
      * @return {number} The dot's width, in pixels.
      */
     getWidth() {
+        // ...
+    }
+
+
+    /**
+     * Set the dot's width.
+     * @param {number} value The dot's width, in pixels.
+     */
+    setWidth(value) {
+        // ...
+    }
+
+    /**
+     * Convert a string containing two comma-separated numbers into a point.
+     * @param {string} str - The string containing two comma-separated numbers.
+     * @return {Point} A Point object.
+     */
+    static fromString(str) {
         // ...
     }
 }
