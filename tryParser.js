@@ -1,6 +1,6 @@
 const { exec } = require('child_process');
 const fs = require('fs');
-var arrFiles = ['testclass.js', 'test.js'],
+var arrFiles = ['testclass.js', 'testOkul.js'],
     arrObj = [];
 
 
@@ -33,7 +33,6 @@ async function fileScanner() {
 }
 
 /* Classes */
-
 
 class ParamInfo {
     constructor(param) {
@@ -75,7 +74,7 @@ class ConstructorInfo {
     constructor(prop) {
         this.Name = prop.name;
         prop
-        this.Params = (prop.params||[]).map(p => new ParamInfo(p));
+        this.Params = (prop.params || []).map(p => new ParamInfo(p));
     }
 
     toString() {
@@ -107,7 +106,7 @@ class ClassInfo {
         this.Members = [];
     }
 
-    parse(members){
+    parse(props) {
         var KIND = {
             CLASS: 'class',
             CONTRUCTOR: 'constructor',
@@ -116,27 +115,28 @@ class ClassInfo {
         }
 
         /* find contructors */
-        var constructors = members.filter(s => s.kind == KIND.CONTRUCTOR);
+        var constructors = props.filter(s => s.kind == KIND.CONTRUCTOR);
         this.ConstructorInfo = new ConstructorInfo(constructors);
 
         /* find members */
-        var members = members.filter(s => s.kind == KIND.MEMBER);
-        if(members.length>0)
-        this.Members = members.map(m=>new MemberInfo(m));
+        var members = props.filter(s => s.kind == KIND.MEMBER);
+        this.Members = members.map(m => new MemberInfo(m));
 
         /* find methods */
-        var methods = members.filter(s => s.kind == KIND.METHOD);
-        if(methods.length>0){
-            this.Methods = methods.map(m=>new MethodInfo(m));
-            this.Methods
-        }
+        var methods = props.filter(s => s.kind == KIND.METHOD && s.scope == 'instance');
+        methods
+        this.Methods = methods.map(m => new MethodInfo(m));
+
+        /* find static methods */
+        methods = props.filter(s => s.kind == KIND.METHOD && s.scope == 'static');
+        this.StaticMethods = methods.map(m => new MethodInfo(m));
     }
 }
 
 /* nesneler */
 fileScanner()
     .then(data => {
-        
+
         /* find classes */
         var classes = data.filter(s => s.kind === 'class');
         classes
@@ -144,13 +144,11 @@ fileScanner()
         for (var cl of classes) {
             cl
             var cls = new ClassInfo(cl);
-            var clsMembers = data.filter(d=>d.memberof===cls.Name);
-            
+            var clsMembers = data.filter(d => d.memberof === cls.Name);
+
             cls.parse(clsMembers);
             cls
         }
-
-        
     })
 
 
