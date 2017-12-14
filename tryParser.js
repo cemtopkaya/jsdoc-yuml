@@ -48,10 +48,10 @@ async function fileScanner(filePath) {
 }
 
 async function convertFileToJsdoc(fp) {
-    console.log(fp);
-    
+    //console.log(fp);
+
     return new Promise((r, j) => {
-        exec(`jsdoc2md --json ${fp}`, (err, stdout, stderr) => {
+        exec(`jsdoc2md --json ${fp}`, { maxBuffer: 1024 * 500 }, (err, stdout, stderr) => {
             if (err) return j(err);
 
             try {
@@ -76,11 +76,30 @@ function createYuml(arrCls) {
         return accumulator;
     }, '');
 
+    var uses = arrCls.reduce((accumulator, cls, idx, arr) => {
+        console.log(cls.Name);
+        // [HttpContext]uses -.->[Response]        
+        var arrExcludedTypes = [
+            'Array', 'Object', 'object', 'string', 'number', 'any', 'boolean', 'integer', 'String', '*',
+            'Array.<string>', 'Array.<number>', 'Array.<Object>', 'Array.<object>', 'Array.<integer>'
+        ]
+
+        if (cls.Uses.size > 0) {
+            for (var tip of cls.Uses) {
+                if (arrExcludedTypes.indexOf(tip) > -1) continue;
+
+                accumulator = `${accumulator}[${cls.Name}]uses -.->[${tip}]${idx < arr.length - 1 ? '\n' : ''}`;
+            }
+        }
+        return accumulator;
+    }, '');
+
     var yuml = `// {type:class}
 // {direction:topDown}
 [note: You can stick notes on diagrams too!{bg:cornsilk}]
 ${classes}
-${inheritances}`;
+${inheritances}
+${uses}`;
 
     return yuml;
 }
@@ -97,27 +116,49 @@ function writeFile(content, destPath) {
 }
 
 /* Classes */
-
+/**
+ * @class TypeInfo
+ */
 class TypeInfo {
+
     constructor(prop) {
         prop
+        if (!prop) {
+            throw new Error('prop bilgisi undefined > prop: ', prop);
+        }
+
+        /**
+         * @prop {(string[])} Names 
+         */
         this.Names = prop.names;
     }
     toString() {
         let sonuc = this.Names.reduce((accumulator, name, idx, arr) => {
             return `${accumulator}${name}${idx < arr.length - 1 ? ',' : ''}`;
         }, '');
-        sonuc
         return sonuc;
     }
 }
 
 class ParamInfo {
     constructor(prop) {
-        prop
-        this.Name = prop.name;
-        this.Description = prop.description;
-        this.Type = new TypeInfo(prop.type);
+        try {
+            /**
+             * @prop {string} Name
+             */
+            this.Name = prop.name;
+            /**
+             * @prop {string} Description
+             */
+            this.Description = prop.description;
+            /**
+             * @prop {TypeInfo} Type
+             */
+            this.Type = new TypeInfo(prop.type);
+        } catch (e) {
+            console.log(prop);
+            throw e;
+        }
     }
     toString() {
         return `${this.Name}:${this.Type}`;
@@ -131,8 +172,7 @@ class ReturnInfo {
     }
 
     toString() {
-        let sonuc = `${this.Type.toString()}`;
-        sonuc
+        let sonuc = `${this.Type}`;
         return sonuc;
     }
 }
@@ -154,14 +194,16 @@ class MethodInfo {
         this.Id = prop.id;
         this.Name = prop.name;
         this.Description = prop.description;
-        console.log(prop.returns)
         this.Return = prop.returns ? prop.returns.map(r => new ReturnInfo(r)) : [];
-        prop
         this.Params = prop.params.map(p => new ParamInfo(p));
-        var a = this.Params
-        a
+
     }
-    toString() {
+    toString(config) {
+        config = Object.assign({
+            showParams: false,
+            showReturnTypes: true
+        }, config);
+
         var ret = this.Return.reduce((accumulator, ret, idx, arr) => {
             return `${accumulator}${ret}${idx < arr.length - 1 ? ' ' : ''}`;
         }, '');
@@ -170,7 +212,14 @@ class MethodInfo {
             return `${accumulator}${param}${idx < arr.length - 1 ? ',' : ''}`
         }, '');
 
-        return `${this.Name}(${paramList})${ret ? ':' + ret : ''}`;
+        let result = this.Name;
+
+        if (config.showParams) result += `(${paramList})`;
+        else result += '()';
+
+        if (config.showReturnTypes) result += `:${ret}`;
+
+        return result;
     }
 }
 
@@ -178,27 +227,128 @@ class MemberInfo {
     // "name":"X","kind":"member","scope":"instance","memberof":"Sinif","properties":[{"type":{"names":["number"]}}],
     constructor(prop) {
         prop
-        this.Id = prop.id;
-        this.Name = prop.name;
-        this.Type = (prop.properties || []).map(p => new TypeInfo(p.type));
-        this.Description = prop.description;
-        this.Return = prop.returns ? new ReturnInfo(prop.returns) : null;
-        console.log(prop)
 
-        this.Getter = Array.isArray(prop.params) && prop.params.length == 0;
-        this.Setter = Array.isArray(prop.params) && prop.params.length == 1;
+        /* 
+        - id ve name bilgisini doğrudan kökten alabiliriz!
+
+        - Tip bilgisi için biraz daha bakmak gerekli
+        2 Tip property var
+        @prop | @property ile tanımlanan
+          Örn:
+            @prop {number} X aciklama
+            this.X
+        
+        get|set ile tanımlanan
+          Örn:
+            get Y(){ return this.x_; }
+            set Y(value){ return this.x_=value; }
+        
+        sadece get varsa @readonly ile işaretlenebilir
+        sadece set varsa vardır :)
+        her ikisi de olursa onlarda olurlar :))
+        
+        
+        1.a) Tip propertylerin tip bilgisi           .properties[0].type          bilgisinden
+        1.b) Tip propertylerin description bilgisi   .properties[0].description   bilgisinden
+        2) Tip propertylerin tip bilgileri
+           a) get için 
+                @type {number} aciklama 
+            yorumunyla yazılmış olmalı ki "kökten",  .type   diye alınabilsin
+        
+            b) set propertylerin sadece 1 parametre alması mecburidir bu yüzden,
+                @param {number} value aciklama
+                set Y(value) {...}
+            diye yazılmış olmalıki   params[0].type   içinden alınsın
+         */
+
+
+        /**
+         * @prop {string} Id
+         */
+        this.Id = prop.id;
+
+        /**
+         * @prop {string} Name
+         */
+        this.Name = prop.name;
+
+        /**
+         * @prop {boolean} Getter
+         */
+        this.Getter = false; // şimdilik false aşağıda kontrollerini yapacağız
+
+        /**
+         * @prop {boolean} Setter
+         */
+        this.Setter = false; // şimdilik false aşağıda kontrollerini yapacağız
+
+        /**
+         * @prop {TypeInfo} Type propertynin tip bilgis
+         */
+        this.Type = null; // şimdilik null aşağıda propertynin durumuna göre değişecek
+
+        /**
+         * @prop {string} Description
+         */
+        this.Description = ''; // şimdilik boş ama aşağıda propertynin durumuna göre değişecek.
+
+        /* ************************************
+          @property | @prop ile süslenmişse
+        *************************************/
+        if (prop.properties) {
+            this.Type = new TypeInfo(prop.properties[0].type);
+            this.Description = prop.properties[0].description;
+        }
+
+        /* ************************************
+          GETTER metot ise parametre alamaz
+          @return ile süslenmiş olabilir
+          @type ile süslenmiş olabilir
+          hiç bir bilgi yoksa new TypeInfo()
+         *************************************/
+        if (Array.isArray(prop.params) && prop.params.length == 0) {
+
+            this.Getter = true;
+            this.Description = prop.description;
+
+            if (prop.returns) {
+                this.Type = new TypeInfo(prop.returns[0].type);
+            } else if (prop.type) {
+                this.Type = new TypeInfo(prop.type);
+            } else {
+                this.Type = new TypeInfo();
+            }
+        }
+
+        /* ************************************
+           SETTER metot ise 1 parametre almak zorunda
+           @param ile süslenmiş olmalı!
+           @type ile süslenmiş olabilir
+         *************************************/
+        if (Array.isArray(prop.params) && prop.params.length == 1) {
+
+            this.Setter = true;
+            this.Description = prop.description;
+
+            if (prop.params) {
+                this.Type = new TypeInfo(prop.params[0].type);
+            } else if (prop.type) {
+                this.Type = new TypeInfo(prop.type);
+            } else {
+                this.Type = new TypeInfo();
+            }
+        }
     }
 
     toString() {
         let donusTipi = this.Type.toString();
-        console.log(donusTipi)
+        //console.log(donusTipi)
         return `${this.Name}${(this.Type ? ':' + this.Type : '')}`;
     }
 }
 
 class ClassInfo {
     constructor(ci) {
-        this.Inherit = ci.augments ? ci.augments[0] : null;
         this.Id = ci.id;
         this.Name = ci.name;
         this.Description = ci.description;
@@ -206,6 +356,13 @@ class ClassInfo {
         this.Methods = [];
         this.StaticMethods = [];
         this.Members = [];
+
+        /* ilişkiler */
+        // inheritance
+        this.Inherit = ci.augments ? ci.augments[0] : null;
+        // uses
+        this.Uses = new Set();
+
     }
 
     parse(props) {
@@ -226,12 +383,57 @@ class ClassInfo {
 
         /* find methods */
         var methods = props.filter(s => s.kind == KIND.METHOD && s.scope == 'instance');
-        methods
         this.Methods = methods.map(m => new MethodInfo(m));
 
         /* find static methods */
         methods = props.filter(s => s.kind == KIND.METHOD && s.scope == 'static');
         this.StaticMethods = methods.map(m => new MethodInfo(m));
+
+        // find uses relation
+        this.findUses();
+    }
+
+    findUses() {
+        // Find in methods
+        this.Methods.forEach(
+            /**
+             * @param {MethodInfo} m
+             */
+            (m, idx, arr) => {
+                /** 
+                 * @type {ParamInfo[]} 
+                 */
+                var params = m.Params;
+
+                params.forEach(p => {
+                    p.Type.Names.forEach(
+                        n => {
+                            this.Uses.add(n.replace('Array.<', '').replace('>', ''));
+                        }
+                    )
+                });
+            });
+
+        // Find in constructor
+        this.ConstructorInfo.Params.forEach(p => {
+            p.Type.Names.forEach(
+                n => {
+                    this.Uses.add(n.replace('Array.<', '').replace('>', ''));
+                }
+            )
+        });
+
+        // Find in members
+        this.Members.forEach(member => {
+            try {
+                member.Type.Names.forEach(name => {
+                    this.Uses.add(name.replace('Array.<', '').replace('>', ''));
+                });
+            } catch (e) {
+                console.error("Error has occured looping inside member types");
+                console.log(e.stack);
+            }
+        });
     }
 
     toString() {
@@ -251,7 +453,7 @@ class ClassInfo {
 
             return `${accumulator}${r_w_only}${member.Name}${idx < arr.length - 1 ? ';' : ''}`;
         }, '');
-        members
+
 
         let methods = this.Methods.reduce((accumulator, method, idx, arr) => {
             return `${accumulator}${method.toString()}${idx < arr.length - 1 ? ';' : ''}`;
@@ -262,7 +464,7 @@ class ClassInfo {
 }
 
 /* nesneler */
-fileScanner('C:\\temp\\jsdoc-yuml\\jsdocTestClass.js')
+fileScanner('C:\\temp\\jsdoc-yuml\\class_es.js')
     .then(data => {
         console.log(JSON.stringify(data));
 
@@ -270,18 +472,18 @@ fileScanner('C:\\temp\\jsdoc-yuml\\jsdocTestClass.js')
         var classes = data.filter(s => s.kind === 'class');
         var arrCls = [];
         for (var cl of classes) {
-
-
             var cls = new ClassInfo(cl);
             var clsMembers = data.filter(d => d.memberof === cls.Name);
 
             cls.parse(clsMembers);
             arrCls.push(cls);
-            console.log(JSON.stringify(cls));
+            //console.log(JSON.stringify(cls));
         }
-        classes
+
         var yuml = createYuml(arrCls);
-        //writeFile(yuml, 'uml.yuml');
+        console.log(yuml);
+
+        writeFile(yuml, 'c:\\temp\\uml.yuml');
     })
 
 

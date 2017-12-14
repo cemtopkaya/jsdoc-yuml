@@ -8,12 +8,14 @@ class Nokta {
      * @param {number} y - The y value.
      */
     constructor(x, y) {
-        // ...
-        /** @property {number} */
+        /**
+         * @property {number} X x açıklaması
+         */
         this.X = x;
 
-        // ...
-        /** @property {number} */
+        /** 
+         * @prop {number} Y y bilgisi
+         */
         this.Y = y;
     }
 
@@ -51,7 +53,7 @@ class Nokta {
     set Point(value) {
 
     }
-    
+
     /**
      * w-only member olsun
      * @param {string} value Atanacak string değeri
@@ -62,8 +64,19 @@ class Nokta {
 
     /**
      * r-only member olsun
+     * @type {string} dönen tipi
+     * @readonly
      */
     get RO() {
+        return 'string dönsün';
+    }
+    
 
+    /**
+     * r-only member olsun
+     * @return {string} dönen tipi
+     */
+    get Cem_return() {
+        return 'string dönsün';
     }
 }

@@ -1,6 +1,4 @@
 // {type:class}
 // {direction:topDown}
 [note: You can stick notes on diagrams too!{bg:cornsilk}]
-[Nokta|X;Y;Point;Point;<<w/o>>WO;<<r/o>>RO|getCoordinate():Object,number,Promise;setCoordinate(a:number,string,b:string)]
-[Sinif|Width|getWidth():number;setWidth(value:number)]
-[Nokta]^-[Sinif]
+[Anahtar|_client|f_db_anahtar_val(_id:string):Promise;f_db_anahtar_key(_anahtarKelime:string,Array):Promise;f_db_anahtar_ekle(_anahtarKelime:string):Promise;f_db_anahtar_index_ekle_urun(anahtar_id:number,urun_id:string,number):Promise;f_db_anahtar_index_sil_urun(anahtar_id:number,urun_id:number):Promise;f_db_anahtar_index_ihale(anahtar_id:number):Promise;f_db_anahtar_index_ekle_ihale(anahtar_id:number,ihale_id:string,Array.<string>,number,Array.<number>):Promise;f_db_anahtar_index_sil_ihale(anahtar_id:number,ihale_id:number):Promise;f_db_anahtar_index_ekle_kalem(anahtar_id:number,kalem_id:string,Array.<string>,number,Array.<number>):Promise;f_db_anahtar_index_sil_kalem(anahtar_id:number,kalem_id:number):Promise]

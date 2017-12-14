@@ -24,15 +24,31 @@ const { LazyLoadingResponsePOCO,
     UyariKriter, UyariPOCO, UyariSonucPOCO, UyeDavetPOCO, UyePOCO, YetkiBolgePOCO, YetkiTahtaPOCO } = require("../lib/ES6/index");
 
 
+    /**
+     * @class
+     */
+    class OptionsBolge{
+
+        /**
+         * @constructor
+         */
+        constructor(){
+
+            /**
+             * @prop {string} Bolgem Aciklamam
+             */
+            this.Bolgem = '';
+        }
+    }
+
 
 /**
- * 
- * 
- * @class Anahtar
+ * @class
  */
-module.exports.Anahtar = class Anahtar {
+class Anahtar {
+
     /**
-     *
+     * @constructor
      * @param {DBType} client
      */
     constructor(client) {
@@ -41,8 +57,7 @@ module.exports.Anahtar = class Anahtar {
         }
         /**
          * Protected gibi düşünülebilir
-         * @type {DBType}
-         * @public
+         * @prop {DBType} _client DB istemci aracı
          */
         this._client = client;
     }
@@ -145,13 +160,14 @@ module.exports.Anahtar = class Anahtar {
     };
 }
 
+
 /** 
- * @class Bolge 
+ * @class
  */
-module.exports.Bolge = class Bolge {
+class Bolge {
 
     /**
-     *
+     * @constructor
      * @param {DBType} client
      */
     constructor(client) {
@@ -169,6 +185,7 @@ module.exports.Bolge = class Bolge {
     /**
      *
      * @param {number|string} _bolge_id
+     * @returns {(IhalePOCO|IhalePOCO[])}
      */
     f_db_bolge_ihaleleri_tumu(_bolge_id) {
         throw new TypeError('Uygulanması gereken metot!');
@@ -222,8 +239,8 @@ module.exports.Bolge = class Bolge {
 
     /**
      * Bölge ile ilişkili şehir ekleniyor
-     * @param _sehir_idler
-     * @param _bolge_id
+     * @param {(number|number[])} _sehir_idler
+     * @param {number} _bolge_id
      * @returns {*}
      */
     f_db_bolge_sehir_ekle(_sehir_idler, _bolge_id) {
@@ -242,7 +259,7 @@ module.exports.Bolge = class Bolge {
 
     /**
      * Bölgeye bağlı şehirleri getirir
-     * @param _id
+     * @param {any} _id
      * @returns {LazyLoadingResponsePOCO}
      */
     f_db_bolge_sehirleri(_id) {
@@ -310,11 +327,12 @@ module.exports.Bolge = class Bolge {
 
 
 /**
- * @class CopKutusu
+ * @class
  */
-module.exports.CopKutusu = class CopKutusu {
+class CopKutusu {
 
     /**  
+     * @constructor
      * @param {DBType} client 
      */
     constructor(client) {
@@ -425,11 +443,12 @@ module.exports.CopKutusu = class CopKutusu {
 
 
 /**
- * @class Dikkat
+ * @class
  */
-module.exports.Dikkat = class Dikkat {
+class Dikkat {
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -504,11 +523,12 @@ module.exports.Dikkat = class Dikkat {
 
 
 /**
- * @class Doviz
+ * @class
  */
-module.exports.Doviz = class Doviz {
+class Doviz {
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -584,12 +604,13 @@ module.exports.Doviz = class Doviz {
 
 /**
  *
- * @class Gorev
+ * @class
  */
-module.exports.Gorev = class Gorev {
+class Gorev {
 
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -715,7 +736,7 @@ module.exports.Gorev = class Gorev {
 
     /**
      * Görev bilgisini döner
-     * @param _id
+     * @param {any} _id
      * @param {OptionsGorev=} _opts
      * @returns {*}
      */
@@ -726,8 +747,8 @@ module.exports.Gorev = class Gorev {
 
     /**
      * Görevi bitti olarak güncelliyoruz
-     * @param kul_id
-     * @param id
+     * @param {any} kul_id
+     * @param {any} id
      * @returns {*}
      */
     f_db_kullanici_gorev_guncelle(kul_id, id) {
@@ -737,12 +758,13 @@ module.exports.Gorev = class Gorev {
 
 
 /**
- * @class Haber
+ * @class
  */
-module.exports.Haber = class Haber {
+class Haber {
 
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -775,7 +797,7 @@ module.exports.Haber = class Haber {
      * Yeni haber ekle kullanıcıya ekleniyorsa kul_id dolu tahtaya ekleniyorsa tahta_id dolu olmalıdır(sıfırdan farklı)
      * @param {number} tahta_id
      * @param {number} kul_id
-     * @param haber
+     * @param {any} haber
      */
     f_db_haber_ekle(tahta_id, kul_id, haber) {
         throw new TypeError('Uygulanması gereken metot!');
@@ -811,12 +833,13 @@ module.exports.Haber = class Haber {
 
 
 /**
- * @class Ihale
+ * @class
  */
-module.exports.Ihale = class Ihale {
+class Ihale {
 
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -834,8 +857,8 @@ module.exports.Ihale = class Ihale {
 
     /**
      * Tahtada değiştirilen ihale yeniden orjinal haline döndürülmek isteniyor
-     * @param _ihale_id
-     * @param _tahta_id
+     * @param {any} _ihale_id
+     * @param {any} _tahta_id
      * @returns {*} */
     f_db_ihale_orjinale_don(_ihale_id, _tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
@@ -849,23 +872,23 @@ module.exports.Ihale = class Ihale {
 
     /**
      * Silinen ihale toplamını getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_ihale_silinen_toplami(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Silinen ihale id lerini getirir
-     * @param _tahta_id
-     * @param _sayfalama
+     * @param {any} _tahta_id
+     * @param {any} _sayfalama
      * @returns {*}
      */
     f_db_ihale_silinen_idler(_tahta_id, _sayfalama) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kullanıcı sildiği kayıdı geri almak isteyebilir.
-     * @param _ihale_id
-     * @param _tahta_id
+     * @param {any} _ihale_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_ihaleyi_silinenden_cikar(_ihale_id, _tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -995,8 +1018,8 @@ module.exports.Ihale = class Ihale {
 
     /**
      * İhaleyi yapan kurum bilgisi değiştirildiğinde genel ihaleyi eziyoruz??
-     * @param ihale_id
-     * @param kurum_id
+     * @param {any} ihale_id
+     * @param {any} kurum_id
      * @returns {*}
      */
     f_db_yapan_kurum_guncelle(ihale_id, kurum_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -1106,11 +1129,11 @@ module.exports.Ihale = class Ihale {
 
     /**
      * İki tarih aralığında yapılma tarihine göre tahta ile ilişkili tüm aktif ihaleleri çeker
-     * @param tarih1_gettime
-     * @param tarih2_gettime
-     * @param _tahta_id
-     * @param _opts
-     * @param _sayfalama
+     * @param {any} tarih1_gettime
+     * @param {any} tarih2_gettime
+     * @param {any} _tahta_id
+     * @param {any} _opts
+     * @param {any} _sayfalama
      * @returns {LazyLoadingResponsePOCO}
      */
     f_db_yapilmaTarihi_Araliginda(tarih1_gettime, tarih2_gettime, _tahta_id, _opts, _sayfalama) { throw new Error('Uygulanması gereken metod!'); }
@@ -1130,9 +1153,9 @@ module.exports.Ihale = class Ihale {
      * Sıralama türüne göre ihalelerin Sorted Set indeksiyle kesiştir
      * Sıralama yönüne göre(asc/desc)
      * Sayfalama özelliklerine göre
-     * @param _tahta_id
-     * @param _arama
-     * @param _opts
+     * @param {any} _tahta_id
+     * @param {any} _arama
+     * @param {any} _opts
      * @returns {Promise|LazyLoadingResponse}
      */
     f_db_tahta_ihale_idler_sort_page(_tahta_id, _arama, _opts) { throw new Error('Uygulanması gereken metod!'); }
@@ -1167,54 +1190,54 @@ module.exports.Ihale = class Ihale {
 
     /**
      * iptal edilen ihale idlerini ihale tarihi aralığında istenirse sayfalı şekliyle getirir(ihale tarihine göre tersten sıralanmış haliyle)
-     * @param _tarih1
-     * @param _tarih2
-     * @param _sayfalama
+     * @param {any} _tarih1
+     * @param {any} _tarih2
+     * @param {any} _sayfalama
      * @returns {Promise}
      */
     f_db_ihaleDunyasinda_iptalEdilenIhale_idlerTariheGore(_tarih1, _tarih2, _sayfalama) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * iptal edilen ihale idlerini ihale tarihi aralığındaki toplamını getirir(toplam iptal edilen ihale sayısı)
-     * @param _tarih1
-     * @param _tarih2
+     * @param {any} _tarih1
+     * @param {any} _tarih2
      * @returns {Promise}
      */
     f_db_ihaleDunyasinda_iptalEdilenIhaleToplamiTariheGore(_tarih1, _tarih2) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * İhale dünyasında iptal edilen ihaleleri tarih aralığına göre getirir
-     * @param _tarih1
-     * @param _tarih2
-     * @param _sayfalama
+     * @param {any} _tarih1
+     * @param {any} _tarih2
+     * @param {any} _sayfalama
      * @returns {LazyLoadingResponsePOCO}
      */
     f_db_ihaleDunyasinda_iptalEdilenIhalelerTariheGore(_tarih1, _tarih2, _sayfalama) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Genel tabloya ihale ekleme.
-     * @param _ihale_id yeni oluşturacaksan 0 varolanı redise eklemeye çalışıyorsak 0 dan farklı bir değer gelir
-     * @param _es_ihale
-     * @param _db_ihale
-     * @param _kullanici_id
+     * @param {any} _ihale_id yeni oluşturacaksan 0 varolanı redise eklemeye çalışıyorsak 0 dan farklı bir değer gelir
+     * @param {any} _es_ihale
+     * @param {any} _db_ihale
+     * @param {any} _kullanici_id
      * @returns {*}
      */
     f_db_ekle_genel(_ihale_id, _es_ihale, _db_ihale, _kullanici_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Geneldeki ihaleyi güncelliyoruz. Provider: IhaleDunyasi.net
-     * @param _es_ihale
-     * @param _db_ihale
-     * @param _kul_id
+     * @param {any} _es_ihale
+     * @param {any} _db_ihale
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_guncelle_ihaleDunyasindan(_es_ihale, _db_ihale, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Genele ihale ekliyoruz. Provider: IhaleDunyasi.net
-     * @param _es_ihale
-     * @param _db_ihale
-     * @param _kul_id
+     * @param {any} _es_ihale
+     * @param {any} _db_ihale
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_ekle_ihaleDunyasindan(_es_ihale, _db_ihale, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -1228,10 +1251,10 @@ module.exports.Ihale = class Ihale {
 
     /**
      * Elastic den çekilen ihale bilgisini redise ekler
-     * @param _ihale_id
-     * @param _es_ihale
-     * @param _db_ihale
-     * @param _kul_id
+     * @param {any} _ihale_id
+     * @param {any} _es_ihale
+     * @param {any} _db_ihale
+     * @param {any} _kul_id
      */
     f_db_ekle_elasticten(_ihale_id, _es_ihale, _db_ihale, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
 
@@ -1353,16 +1376,16 @@ module.exports.Ihale = class Ihale {
 
     /**
      * İhalenin takipteki kalem idlerini getirir
-     * @param _ihale_id
-     * @param _tahta_id
+     * @param {any} _ihale_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_tahtanin_takipteki_kalem_idleri(_ihale_id, _tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * İhalenin takipteki kalemlerini buluyoruz
-     * @param _ihale_id
-     * @param _tahta_id
+     * @param {any} _ihale_id
+     * @param {any} _tahta_id
      * @returns {LazyLoadingResponsePOCO}
      */
     f_db_ihalenin_takipteki_kalemleri(_ihale_id, _tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -1380,8 +1403,8 @@ module.exports.Ihale = class Ihale {
 
     /**
      * Elastic de kayıtlı ihale idlerini çekip elastic:ihale setine ekler
-     * @param _ay
-     * @param _yil
+     * @param {any} _ay
+     * @param {any} _yil
      * @returns {*}
      */
     f_db_elastic_ihaleleri_cek(_ay, _yil) { throw new Error('Uygulanması gereken metod!'); }
@@ -1399,12 +1422,13 @@ module.exports.Ihale = class Ihale {
 
 
 /**
- * @class Ileti
+ * @class
  */
-module.exports.Ileti = class Ileti {
+class Ileti {
 
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -1421,7 +1445,7 @@ module.exports.Ileti = class Ileti {
 
     /**
      * Kullanıcının ileti toplamı
-     * @param _kul_id
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_ileti_toplam(_kul_id) {
@@ -1430,9 +1454,9 @@ module.exports.Ileti = class Ileti {
 
     /**
      * Kullanıcı ileti detaylarını getir(son eklenenden ilk eklenene doğru)
-     * @param _kul_id
-     * @param _iSayfa
-     * @param _iAdet
+     * @param {any} _kul_id
+     * @param {any} _iSayfa
+     * @param {any} _iAdet
      * @returns {*}
      */
     f_db_ileti_tumu(_kul_id, _iSayfa, _iAdet) {
@@ -1441,8 +1465,8 @@ module.exports.Ileti = class Ileti {
 
     /**
      * Yeni ileti bilgisi ekle
-     * @param kul_id
-     * @param id
+     * @param {any} kul_id
+     * @param {any} id
      * @returns {*}
      */
     f_db_ileti_ekle(kul_id, id) {
@@ -1454,11 +1478,12 @@ module.exports.Ileti = class Ileti {
 
 
 /**
- * @class Kalem
+ * @class
  */
-module.exports.Kalem = class Kalem {
+class Kalem {
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -1486,8 +1511,8 @@ module.exports.Kalem = class Kalem {
 
     /**
      * Tahtada değiştirilen kalemi yeniden orjinal haline döndürülmek isteniyor
-     * @param _kalem_id
-     * @param _tahta_id
+     * @param {any} _kalem_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_kalem_orjinale_don(_kalem_id, _tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -1496,15 +1521,15 @@ module.exports.Kalem = class Kalem {
 
     /**
      * Tahta anahtar kelimelerine göre indekslenmiş kalem idlerini getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_kalem_indeksli_idler(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Tahtanın anahtar kelimelerine uygun indekslenmiş kalem idlerini getirir
-     * @param _tahta_id
-     * @param _ihale_id
+     * @param {any} _tahta_id
+     * @param {any} _ihale_id
      * @returns {*}
      */
     f_db_kalem_indeksli_idler_ihaleye_bagli(_tahta_id, _ihale_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -1520,8 +1545,8 @@ module.exports.Kalem = class Kalem {
 
     /**
      * Kalemin bağlı oldugu ihale bilgisini getirir
-     * @param _kalem_id
-     * @param _tahta_id
+     * @param {any} _kalem_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_kalem_ihalesi(_kalem_id, _tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -1543,23 +1568,23 @@ module.exports.Kalem = class Kalem {
 
     /**
      * Kalemin/kalemlerin takipte olup olmadığını bulup geri döner
-     * @param _tahta_id
-     * @param _kalemler
+     * @param {any} _tahta_id
+     * @param {any} _kalemler
      */
     f_db_kalem_takip_kontrol(_tahta_id, _kalemler) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Takip edilecek kalem setinden çıkar
-     * @param _tahta_id
-     * @param _kalem_id
+     * @param {any} _tahta_id
+     * @param {any} _kalem_id
      * @returns {*}
      */
     f_db_tahta_kalem_takip_sil(_tahta_id, _kalem_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Takip edilecek kalem setine ekle
-     * @param _tahta_id
-     * @param _kalem_id
+     * @param {any} _tahta_id
+     * @param {any} _kalem_id
      * @returns {*}
      */
     f_db_tahta_kalem_takip_ekle(_tahta_id, _kalem_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -1582,8 +1607,8 @@ module.exports.Kalem = class Kalem {
 
     /**
      *  Tahtanın takip ettiği ve tüm kalem sayılarını getirir
-     * @param _tahta_id
-     * @param _arama
+     * @param {any} _tahta_id
+     * @param {any} _arama
      * @returns {GrafikDonutPOCO}
      */
     f_db_kalem_takip_toplami(_tahta_id, _arama) { throw new Error('Uygulanması gereken metod!'); }
@@ -1610,8 +1635,8 @@ module.exports.Kalem = class Kalem {
 
     /**
      * Gizlenen kalem toplamını getirir
-     * @param _tahta_id
-     * @param _tarih
+     * @param {any} _tahta_id
+     * @param {any} _tarih
      * @returns {*}
      */
     f_db_kalem_gizlenen_toplami(_tahta_id, _tarih) { throw new Error('Uygulanması gereken metod!'); }
@@ -1631,24 +1656,24 @@ module.exports.Kalem = class Kalem {
 
     /**
      * Silinen kalem toplamını getirir
-     * @param _tahta_id
-     * @param _tarih
+     * @param {any} _tahta_id
+     * @param {any} _tarih
      * @returns {GrafikDonutPOCO}
      */
     f_db_kalem_silinen_toplami(_tahta_id, _tarih) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Tahtanın silinen kalem idlerini içerir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_kalem_silinen_idler(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kullanıcı sildiği kayıdı geri almak isteyebilir.
-     * @param _kalem_id
-     * @param _ihale_id
-     * @param _tahta_id
+     * @param {any} _kalem_id
+     * @param {any} _ihale_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_kalemi_silinenden_cikar(_kalem_id, _ihale_id, _tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -1725,38 +1750,38 @@ module.exports.Kalem = class Kalem {
 
     /**
      * Yeni kalem ekle (genel kalem-ihale dünyasından çekilen..vb)
-     * @param _ihale_id
-     * @param _kalem
-     * @param _kul_id
+     * @param {any} _ihale_id
+     * @param {any} _kalem
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_kalem_ekle(_ihale_id, _kalem, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Tahtaya yeni kalem ekle
-     * @param _tahta_id
-     * @param _ihale_id
-     * @param _es_kalem
-     * @param _db_kalem
-     * @param _kul_id
+     * @param {any} _tahta_id
+     * @param {any} _ihale_id
+     * @param {any} _es_kalem
+     * @param {any} _db_kalem
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_kalem_ekle_tahta(_tahta_id, _ihale_id, _es_kalem, _db_kalem, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kalemin güncellenmesi sğlanır
-     * @param _tahta_id
-     * @param _ihale_id
-     * @param _es_kalem
-     * @param _db_kalem
-     * @param _kul_id
+     * @param {any} _tahta_id
+     * @param {any} _ihale_id
+     * @param {any} _es_kalem
+     * @param {any} _db_kalem
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_kalem_guncelle(_tahta_id, _ihale_id, _es_kalem, _db_kalem, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Bu kalem genel kalemler setinde ise 1 değilse 0 döner
-     * @param _kalem_id
+     * @param {any} _kalem_id
      * @returns {*}
      */
     f_db_kalem_genel_kontrol(_kalem_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -1806,10 +1831,11 @@ module.exports.Kalem = class Kalem {
 
 
 /**
- * @class Kullanici
+ * @class
  */
-module.exports.Kullanici = class Kullanici {
+class Kullanici {
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -1847,7 +1873,7 @@ module.exports.Kullanici = class Kullanici {
 
     /**
      * Kullanıcının sahip ve üye olduğu aktif tahtalarını getirir
-     * @param kul_id
+     * @param {any} kul_id
      * @returns {*}
      */
     f_db_kullanici_tahta_idleri(kul_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -1862,65 +1888,65 @@ module.exports.Kullanici = class Kullanici {
 
     /**
      * Kullanıcı sildiği tahtayı yeniden aktife çekmek istiyor
-     * @param _kul_id
-     * @param _tahta_id
+     * @param {any} _kul_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_kullanici_silinen_tahtalardan_cikar(_kul_id, _tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kullanıcının silinen tahtalarını çekiyoruz
-     * @param _kul_id
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_kullanici_silinen_tahtalari_tumu(_kul_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kullanıcının aktif ve silinen tahtalarına göre toplamları bulunur
-     * @param _kul_id
+     * @param {any} _kul_id
      * @returns {*|GrafikDonutPOCO}
      */
     f_db_kullanici_silinen_tahta_toplami(_kul_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kullanıcının silinen tahta idlerini buluyoruz
-     * @param _kul_id
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_kullanici_silinen_tahta_idleri(_kul_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * KULLANICI İŞLEMLERİ(EKLE-SİL-GÜNCELLE-TUMU)
-     * @param aktif
+     * @param {any} aktif
      * @returns {*}
      */
     f_db_kullanici_tumu(aktif) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * id lere göre kullanıcıları buluyoruz
-     * @param _idler
+     * @param {any} _idler
      * @returns {*}
      */
     f_db_kullanici_tumu_idye_gore(_idler) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kullanıcının ayar bilgisini çek
-     * @param _kul_id
+     * @param {any} _kul_id
      * @returns {Q.Promise<U>|*}
      */
     f_db_kullanici_ayar(_kul_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Ayar bilgisi ekle
-     * @param _kul_id
-     * @param _ayar
+     * @param {any} _kul_id
+     * @param {any} _ayar
      * @returns {Q.Promise<U>|*}
      */
     f_db_kullanici_ayar_ekle(_kul_id, _ayar) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kullanıcı ve ayar bilgilerinin çekilmesi sağlanır
-     * @param _kul_id
+     * @param {any} _kul_id
      * @param {OptionsKullanici=} _opts, Kullanıcı bilgilerinin detaylarını çekip çekmemek için ayarları içerir
      * @returns {Promise}
      */
@@ -1928,8 +1954,8 @@ module.exports.Kullanici = class Kullanici {
 
     /**
      * Kullanıcının tahtada eklenen rollerine göre bilgilerini çekiyoruz
-     * @param _tahta_id
-     * @param _kul_id
+     * @param {any} _tahta_id
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_kullanici_rolleri(_tahta_id, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -1966,7 +1992,7 @@ module.exports.Kullanici = class Kullanici {
 
     /**
      * Kullanıcı eposta adresiyle, varsa kullanıcı bilgisi döner
-     * @param _eposta {String} - Kullanıcı adı olarak e-posta adresini kullanıyoruz.
+     * @param {any} _eposta {String} - Kullanıcı adı olarak e-posta adresini kullanıyoruz.
      * @returns {Promise}
      */
     f_db_eposta_to_db_kullanici_id(_eposta) { throw new Error('Uygulanması gereken metod!'); }
@@ -2008,7 +2034,7 @@ module.exports.Kullanici = class Kullanici {
 
     /**
      * Kullanıcı eposta adresiyle, varsa kullanıcı bilgisi döner
-     * @param _principleName {String} - Kullanıcı adı olarak e-posta adresini kullanıyoruz.
+     * @param {any} _principleName {String} - Kullanıcı adı olarak e-posta adresini kullanıyoruz.
      * @returns {Promise}
      */
     f_db_kullanici_AD_principleName(_principleName) { throw new Error('Uygulanması gereken metod!'); }
@@ -2036,7 +2062,7 @@ module.exports.Kullanici = class Kullanici {
 
     /**
      * Kullanıcının sistemde kayıtlı olup olmadığı kontrol edilir, yoksa null döner
-     * @param kullanici
+     * @param {any} kullanici
      * @returns {*}
      */
     f_db_kullanici_kontrol(kullanici) { throw new Error('Uygulanması gereken metod!'); }
@@ -2067,11 +2093,12 @@ module.exports.Kullanici = class Kullanici {
 
 
 /**
- * @class Kurum
+ * @class
  */
-module.exports.Kurum = class Kurum {
+class Kurum {
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -2089,7 +2116,7 @@ module.exports.Kurum = class Kurum {
     /**
      * Favori kurumlarına ekle
      * @param {(string|string[]|number[]|number)} _kurum_id
-     * @param _kul_id
+     * @param {any} _kul_id
      * @returns {*}
      *  */
     f_db_favori_kurum_ekle(_kurum_id, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -2097,14 +2124,14 @@ module.exports.Kurum = class Kurum {
     /**
      * Favori kurumlarından çıkar
      * @param {(number|string)} _kurum_id
-     * @param _kul_id
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_favori_kurum_sil(_kurum_id, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kullanıcının favori kurum idleri
-     * @param _kul_id
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_favori_kurum_idler(_kul_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -2276,23 +2303,23 @@ module.exports.Kurum = class Kurum {
 
     /**
      *
-     * @param _tahta_id
-     * @param _kurum_id
-     * @param _onay_id
-     * @param _para_id
-     * @param _tarih1
-     * @param _tarih2
+     * @param {any} _tahta_id
+     * @param {any} _kurum_id
+     * @param {any} _onay_id
+     * @param {any} _para_id
+     * @param {any} _tarih1
+     * @param {any} _tarih2
      * @returns {Promise|{Key: integer, Count: integer }}
      */
     f_db_kurumun_ihale_gunlerine_gore_katildigi_ihale_toplamlari(_tahta_id, _kurum_id, _onay_id, _para_id, _tarih1, _tarih2) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      *
-     * @param _tahta_id
-     * @param _kurum_id
-     * @param _para_id
-     * @param _tarih1
-     * @param _tarih2
+     * @param {any} _tahta_id
+     * @param {any} _kurum_id
+     * @param {any} _para_id
+     * @param {any} _tarih1
+     * @param {any} _tarih2
      * @returns {*}
      */
     f_db_kurumun_teklif_verdigi_ihaleler_toplami(_tahta_id, _kurum_id, _para_id, _tarih1, _tarih2) { throw new Error('Uygulanması gereken metod!'); }
@@ -2361,8 +2388,8 @@ module.exports.Kurum = class Kurum {
 
     /**
      * Tüm aktif kurumların ID bilgilerini döner
-     * @param _tahta_id
-     * @param _sayfalama
+     * @param {any} _tahta_id
+     * @param {any} _sayfalama
      * @returns {Array}
      */
     f_db_aktif_kurum_idleri(_tahta_id, _sayfalama) { throw new Error('Uygulanması gereken metod!'); }
@@ -2379,18 +2406,18 @@ module.exports.Kurum = class Kurum {
 
     /**
      * Tahtada eklenen özel aktif(silinmemiş) kurumları getirir
-     * @param _tahta_id
-     * @param _kul_id
-     * @param _sayfalama
+     * @param {any} _tahta_id
+     * @param {any} _kul_id
+     * @param {any} _sayfalama
      * @returns {LazyLoadingResponsePOCO}
      */
     f_db_kurum_tahta_aktif(_tahta_id, _kul_id, _sayfalama) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Tahtada eklenen özel aktif (silinmemiş) kurum idlerini getirir(genel kurum idleri yok)
-     * @param _tahta_id
-     * @param _baslangic
-     * @param _bitis
+     * @param {any} _tahta_id
+     * @param {any} _baslangic
+     * @param {any} _bitis
      * @returns {*}
      */
     f_db_kurum_tahta_aktif_idler(_tahta_id, _baslangic, _bitis) { throw new Error('Uygulanması gereken metod!'); }
@@ -2406,7 +2433,7 @@ module.exports.Kurum = class Kurum {
 
     /**
      * Kurumla ilişkili tahta idlerini içerir
-     * @param _kurum_id
+     * @param {any} _kurum_id
      * @returns {*}
      */
     f_db_kurumun_tahta_idleri(_kurum_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -2448,9 +2475,9 @@ module.exports.Kurum = class Kurum {
 
     /**
      * Kurum silme işlemi
-     * @param _tahta_id
-     * @param _kurum_id
-     * @param _kul_id
+     * @param {any} _tahta_id
+     * @param {any} _kurum_id
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_kurum_sil(_tahta_id, _kurum_id, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -2475,13 +2502,13 @@ module.exports.Kurum = class Kurum {
 
     /**
      * ihale dünyasında kayıtlı kurum id bilgisine göre redisteki kurumu çekiyoruz
-     * @param _iIhaleDunyasiKurumId
+     * @param {any} _iIhaleDunyasiKurumId
      */
     f_db_kurum_getir_ihaleDunyasindan2(_iIhaleDunyasiKurumId) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * kurum idx i ata
-     * @param _kurum_id
+     * @param {any} _kurum_id
      * @returns {*}
      */
     f_db_kurum_idx_ekle(_kurum_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -2501,7 +2528,7 @@ module.exports.Kurum = class Kurum {
 
     /**
      * Gizlenen kurum toplamını getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_kurum_gizlenen_toplami(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -2521,22 +2548,22 @@ module.exports.Kurum = class Kurum {
 
     /**
      * Silinen kurum toplamını getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*|GrafikDonutPOCO}
      */
     f_db_kurum_silinen_toplami(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Silinen kurum id lerini getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*|any}
      */
     f_db_kurum_silinen_idler(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kullanıcı sildiği kayıdı geri almak isteyebilir.
-     * @param _kurum_id
-     * @param _tahta_id
+     * @param {any} _kurum_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_kurumu_silinenden_cikar(_kurum_id, _tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -2554,12 +2581,13 @@ module.exports.Kurum = class Kurum {
 
 /**
  *
- * @class Log
+ * @class
  */
-module.exports.Log = class Log {
+class Log {
 
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -2590,11 +2618,12 @@ module.exports.Log = class Log {
 
 /**
  *
- * @class Olay
+ * @class
  */
-module.exports.Olay = class Olay {
+class Olay {
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -2641,11 +2670,12 @@ module.exports.Olay = class Olay {
 
 /**
  *
- * @class Rol
+ * @class
  */
-module.exports.Rol = class Rol {
+class Rol {
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -2663,7 +2693,7 @@ module.exports.Rol = class Rol {
     //region ROLLER
     /**
      * Tahtaya ait rolleri getirir(tahtanın ve bölgenin rollerini içerir)
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_rol_tumu(_tahta_id) {
@@ -2672,7 +2702,7 @@ module.exports.Rol = class Rol {
 
     /**
      * Tahtaya ait rolleri içerir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      */
     f_db_rol_tahta(_tahta_id) {
         throw new TypeError('Uygulanması gereken metot!');
@@ -2680,7 +2710,7 @@ module.exports.Rol = class Rol {
 
     /**
      * Tahtada tanımlanan bölgeye ait rolleri içerir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      */
     f_db_rol_bolge(_tahta_id) {
         throw new TypeError('Uygulanması gereken metot!');
@@ -2738,11 +2768,12 @@ module.exports.Rol = class Rol {
 
 
 /**
- * @class Sehir
+ * @class
  */
-module.exports.Sehir = class Sehir {
+class Sehir {
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -2798,11 +2829,12 @@ module.exports.Sehir = class Sehir {
 
 
 /**
- * @class Tahta
+ * @class
  */
-module.exports.Tahta = class Tahta {
+class Tahta {
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -2833,14 +2865,14 @@ module.exports.Tahta = class Tahta {
 
     /**
      * tahtada kayıtlı AKTİF(silinmeyen) uyarılar id lerini döner
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_tahta_uyarilar_idleri(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * tahtada kayıtlı AKTİF(silinmeyen) uyarılar listesini döner
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_tahta_uyarilar_tumu(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -2855,7 +2887,7 @@ module.exports.Tahta = class Tahta {
 
     /**
      * Tahtanın takip edilen ihale id lerini getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @param {URLQueryPOCO_Sayfalama=} _sayfalama
      * @returns {*}
      */
@@ -2878,14 +2910,14 @@ module.exports.Tahta = class Tahta {
 
     /**
      * Bu metod tahtanın takip edilen ve indekslenen(tahta anahtalarına uygun olan ihaleler) ihale idlerini getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_indekslenen_ve_takip_edilen_ihale_idleri(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Tahtanın anahtar kelimelerine uygun olan ve takip edilen kalem id lerinin birleşimini döner
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {Array}
      */
     f_db_indekslenen_ve_takip_edilen_kalem_idler(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -2949,8 +2981,8 @@ module.exports.Tahta = class Tahta {
 
     /**
      * İki tarih aralığında anahtara göre indekslenmiş ihaleleri getirir
-     * @param _tahta_id
-     * @param _arama
+     * @param {any} _tahta_id
+     * @param {any} _arama
      * @returns {LazyLoadingResponsePOCO}
      */
     f_db_tahta_ihale_indeksli_ihaleler_tarihe_gore_sirali(_tahta_id, _arama) { throw new Error('Uygulanması gereken metod!'); }
@@ -2974,14 +3006,14 @@ module.exports.Tahta = class Tahta {
 
     /**
      * Gizlenen ihale toplamını getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_tahta_ihale_gizlenen_toplami(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Gizlenen ihale toplamını getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_tahta_ihale_gizlenen_toplami1(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3038,15 +3070,15 @@ module.exports.Tahta = class Tahta {
 
     /**
      * Tahta_id ye yapılmış UID li davetin tüm bilgisini döner
-     * @param _tahta_id
-     * @param _davetId
+     * @param {any} _tahta_id
+     * @param {any} _davetId
      * @returns {*}
      */
     f_db_tahta_davet(_tahta_id, _davetId) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      *
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {Promise}
      */
     f_db_tahta_davetleri(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3064,18 +3096,18 @@ module.exports.Tahta = class Tahta {
 
     /**
      * Tahtanın üyesine bağlı bölge ve o bölgede tanımlı rolünü kayıt ediyoruz
-     * @param _tahta_id
-     * @param _uye_id
-     * @param _bolgeRolleri [bolge_id,rol_id] şeklinde array olarak gelir örn [1,2]
+     * @param {any} _tahta_id
+     * @param {any} _uye_id
+     * @param {any} _bolgeRolleri [bolge_id,rol_id] şeklinde array olarak gelir örn [1,2]
      * @returns {*}
      */
     f_db_tahta_uye_bolge_rolu_ekle(_tahta_id, _uye_id, _bolgeRolleri) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Tahtanın üyesine bağlı bölge ve o bölgede tanımlı rolünü kayıt ediyoruz
-     * @param _tahta_id
-     * @param _uye_id
-     * @param _bolge_id
+     * @param {any} _tahta_id
+     * @param {any} _uye_id
+     * @param {any} _bolge_id
      * @returns {*}
      */
     f_db_tahta_uye_bolge_rolu_sil(_tahta_id, _uye_id, _bolge_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3083,9 +3115,9 @@ module.exports.Tahta = class Tahta {
     /**
      * tablo         key  value
      * tahta:401:uye   1  [1,2]
-     * @param _tahta_id
-     * @param _uye_id
-     * @param _rol
+     * @param {any} _tahta_id
+     * @param {any} _uye_id
+     * @param {any} _rol
      * @returns {Promise}
      */
     f_db_tahta_uye_rol_guncelle(_tahta_id, _uye_id, _rol) { throw new Error('Uygulanması gereken metod!'); }
@@ -3093,9 +3125,9 @@ module.exports.Tahta = class Tahta {
     /**
      * tahtanın üyesine ait genel tahta rolü belirliyoruz
      * örn tahta 1 de üye 11 idli kullanıcı admin rolüne sahip gibi
-     * @param _tahta_id
-     * @param _uye_id
-     * @param _rol_id
+     * @param {any} _tahta_id
+     * @param {any} _uye_id
+     * @param {any} _rol_id
      * @returns {*}
      */
     f_db_tahta_uye_rol_ekle(_tahta_id, _uye_id, _rol_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3112,8 +3144,8 @@ module.exports.Tahta = class Tahta {
 
     /**
      * Tahtanın üyelerinden çıkartıyoruz
-     * @param _tahta_id
-     * @param _uye_id
+     * @param {any} _tahta_id
+     * @param {any} _uye_id
      * @returns {Promise.<TResult>|*}
      */
     f_db_tahta_uye_sil(_tahta_id, _uye_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3144,14 +3176,14 @@ module.exports.Tahta = class Tahta {
 
     /**
      * Tahta ile ilişkili kurum id yi döner
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_tahta_kurum_id(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Tahta ile ilişkili kurum id yi döner
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_tahta_kurumu(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3198,16 +3230,16 @@ module.exports.Tahta = class Tahta {
 
     /**
      * Tahta ile ilişkili kurum ekliyoruz
-     * @param _tahta_id
-     * @param _kurum_id
+     * @param {any} _tahta_id
+     * @param {any} _kurum_id
      */
     f_db_tahtaya_kurum_ekle(_tahta_id, _kurum_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Veriyi güncellemeden önceki hali çekilir ve LOG alanına atılır.
      * Güncellenecek nesnenin tarih bilgisi işlemin saati olarak güncellenir ve HSET ile işlem tamamlanır.
-     * @param _tahta_db
-     * @param _kul_id
+     * @param {any} _tahta_db
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_tahta_guncelle(_tahta_db, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3276,7 +3308,7 @@ module.exports.Tahta = class Tahta {
 
     /**
      * Tahtada oluşturulan özel bölgeleri içerir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {LazyLoadingResponsePOCO}
      */
     f_db_tahta_bolge_ozel(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3284,15 +3316,14 @@ module.exports.Tahta = class Tahta {
 }
 
 
-
-
 /**
- * @class Teklif
+ * @class
  */
-module.exports.Teklif = class Teklif {
+class Teklif {
 
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -3372,12 +3403,12 @@ module.exports.Teklif = class Teklif {
     }
 }
 
-
 /**
- * @class Urun
+ * @class
  */
-module.exports.Urun = class Urun {
+class Urun {
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -3406,7 +3437,7 @@ module.exports.Urun = class Urun {
     /**
      * Favori ürünlerine ekle
      * @param {(string|string[]|number[]|number)} _urun_id
-     * @param _kul_id
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_favori_urun_ekle(_urun_id, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3414,14 +3445,14 @@ module.exports.Urun = class Urun {
     /**
      * Favori ürünlerinden çıkar
      * @param {(number|string)} _urun_id
-     * @param _kul_id
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_favori_urun_sil(_urun_id, _kul_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kullanıcının favori ürün idleri
-     * @param _kul_id
+     * @param {any} _kul_id
      * @returns {*}
      */
     f_db_favori_urun_idler(_kul_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3484,24 +3515,24 @@ module.exports.Urun = class Urun {
 
     /**
      * İhale tarihine göre ürünle katıldığı teklif varsa o güne 1 yazılır yoksa 0
-     * @param _tahta_id
-     * @param _urun_id
-     * @param _onay_id
-     * @param _para_id
-     * @param _tarih1
-     * @param _tarih2
+     * @param {any} _tahta_id
+     * @param {any} _urun_id
+     * @param {any} _onay_id
+     * @param {any} _para_id
+     * @param {any} _tarih1
+     * @param {any} _tarih2
      * @returns {*}
      */
     f_db_urunle_teklif_verilen_ihale_sayisi(_tahta_id, _urun_id, _onay_id, _para_id, _tarih1, _tarih2) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * İhale tarihine göre ürünle katıldığı teklif varsa o güne 1 yazılır yoksa 0
-     * @param _tahta_id
-     * @param _urun_id
-     * @param _onay_id
-     * @param _para_id
-     * @param _tarih1
-     * @param _tarih2
+     * @param {any} _tahta_id
+     * @param {any} _urun_id
+     * @param {any} _onay_id
+     * @param {any} _para_id
+     * @param {any} _tarih1
+     * @param {any} _tarih2
      * @returns {*}
      */
     f_db_urunle_teklif_verilen_ihale_sayisi1(_tahta_id, _urun_id, _onay_id, _para_id, _tarih1, _tarih2) { throw new Error('Uygulanması gereken metod!'); }
@@ -3558,12 +3589,12 @@ module.exports.Urun = class Urun {
 
     /**
      * Ürünün verildiği teklif idleri
-     * @param _tahta_id
-     * @param _urun_id
+     * @param {any} _tahta_id
+     * @param {any} _urun_id
      * @param {number} _onay_durum_id - Eğer 1 ise kazanan teklif_id leri, 0 ise kazanan, atılan, reddedilen tekliflerin id lerini dönecek
-     * @param _para_id
-     * @param _tarih1
-     * @param _tarih2
+     * @param {any} _para_id
+     * @param {any} _tarih1
+     * @param {any} _tarih2
      * @returns {*}
      */
     f_db_urunun_teklif_toplami(_tahta_id, _urun_id, _onay_durum_id, _para_id, _tarih1, _tarih2) { throw new Error('Uygulanması gereken metod!'); }
@@ -3588,9 +3619,9 @@ module.exports.Urun = class Urun {
 
     /**
      * Ürünle ilişkili firmayı sil
-     * @param _tahta_id
-     * @param _urun_id
-     * @param _kurum_id
+     * @param {any} _tahta_id
+     * @param {any} _urun_id
+     * @param {any} _kurum_id
      * @returns {*}
      */
     f_db_urun_iliskili_kurum_sil(_tahta_id, _urun_id, _kurum_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3703,29 +3734,29 @@ module.exports.Urun = class Urun {
 
     /**
      * Silinen ürün toplamını getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {GrafikDonutPOCO}
      */
     f_db_urun_silinen_toplami(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Silinen ürün idlerini getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*|any}
      */
     f_db_urun_silinen_idler(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Silinen ürün bilgilerini detaylarıyla getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_urun_silinen_tumu(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
 
     /**
      * Kullanıcı sildiği kayıdı geri almak isteyebilir.
-     * @param _urun_id
-     * @param _tahta_id
+     * @param {any} _urun_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_urunu_silinenden_cikar(_urun_id, _tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3738,7 +3769,7 @@ module.exports.Urun = class Urun {
 
     /**
      * Gizlenen ürün toplamını getirir
-     * @param _tahta_id
+     * @param {any} _tahta_id
      * @returns {*}
      */
     f_db_urun_gizlenen_toplami(_tahta_id) { throw new Error('Uygulanması gereken metod!'); }
@@ -3776,15 +3807,13 @@ module.exports.Urun = class Urun {
 
 }
 
-
-
-
 /**
- * @class Uyari
+ * @class
  */
-module.exports.Uyari = class Uyari {
+class Uyari {
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
@@ -3851,7 +3880,7 @@ module.exports.Uyari = class Uyari {
 
     /**
      * Uyarıyı sil
-     * @param {number} _tahta_id
+     * @param {number} _tahta_id tahta bilgileri
      * @param {number} _uyari_id
      * @param {number} _kul_id
      * @returns {*}
@@ -3861,21 +3890,18 @@ module.exports.Uyari = class Uyari {
     }
 }
 
-
-
-
-
 /**
- * @class UyariServisi
+ * @class
  */
-module.exports.UyariServisi = class UyariServisi {
+class UyariServisi {
 
 
     /**
+     * @constructor
      * @param {DBType} client
      * */
     constructor(client) {
-        if (this.constructor === DB_UyariServisi) {
+        if (this.constructor === UyariServisi) {
             throw new TypeError('Abstract sınıflardan nesne yaratılamaz!');
         }
         /**
@@ -3895,5 +3921,4 @@ module.exports.UyariServisi = class UyariServisi {
     }
 }
 
-var i = new Ihale()
-i.
+module.exports = { Anahtar, UyariServisi, Sehir };
