@@ -51,4 +51,19 @@ class Nokta {
     set Point(value) {
 
     }
+    
+    /**
+     * w-only member olsun
+     * @param {string} value Atanacak string değeri
+     */
+    set WO(value) {
+
+    }
+
+    /**
+     * r-only member olsun
+     */
+    get RO() {
+
+    }
 }
