@@ -1,10 +1,55 @@
 const { exec } = require('child_process');
 const fs = require('fs');
+const path = require('path');
 var arrFiles = ['classNokta.js', 'classSinif.js'],
     arrObj = [];
 
+arrFiles = scanFolder('C:\\Projeler\\FMC.Turkiye.Node\\Ihale\\Modules\\kuark-db\\src\\', '_es.js');
 
-var convertFileToJsdoc = async (fp) => {
+function scanFolder(startPath, filter) {
+    var result = [];
+    if (!fs.existsSync(startPath)) {
+        console.log("no dir ", startPath);
+        return;
+    }
+
+    var files = fs.readdirSync(startPath);
+    for (var i = 0; i < files.length; i++) {
+        var filename = path.join(startPath, files[i]);
+
+        try {
+            var stat = fs.lstatSync(filename);
+            if (stat.isDirectory()) {
+                scanFolder(filename, filter); //recurse
+            }
+            else if (filename.indexOf(filter) >= 0) {
+                result.push(filename);
+            };
+        } catch (e) {
+            console.log(e);
+        }
+    };
+    return result;
+}
+
+async function fileScanner(filePath) {
+    let sonuc = [];
+    if (filePath) {
+        var obj = await convertFileToJsdoc(filePath);
+        sonuc.push(...obj);
+    } else {
+        for (var fn of arrFiles) {
+            var filePath = `${fn}`;
+            var obj = await convertFileToJsdoc(filePath);
+            sonuc.push(...obj);
+        }
+    }
+    return sonuc;
+}
+
+async function convertFileToJsdoc(fp) {
+    console.log(fp);
+    
     return new Promise((r, j) => {
         exec(`jsdoc2md --json ${fp}`, (err, stdout, stderr) => {
             if (err) return j(err);
@@ -19,30 +64,18 @@ var convertFileToJsdoc = async (fp) => {
     });
 }
 
-async function fileScanner() {
-    console.log("giriş");
-    let sonuc = [];
-    for (var fn of arrFiles) {
-        var filePath = `${__dirname}/${fn}`;
-        var obj = await convertFileToJsdoc(filePath);
-        sonuc.push(...obj);
-        console.log("gelişme 1: ", sonuc.length);
-    }
-    return sonuc;
-}
-
 function createYuml(arrCls) {
     var classes = arrCls.reduce((accumulator, cls, idx, arr) => {
-        return `${accumulator}${cls}${idx<arr.length-1?'\n':''}`;
+        return `${accumulator}${cls}${idx < arr.length - 1 ? '\n' : ''}`;
     }, '');
 
     var inheritances = arrCls.reduce((accumulator, cls, idx, arr) => {
         if (cls.Inherit) {
-            return `${accumulator}[${cls.Inherit}]^-[${cls.Name}]\n`;
+            return `${accumulator}[${cls.Inherit}]^-[${cls.Name}]${idx < arr.length - 1 ? '\n' : ''}`;
         }
         return accumulator;
     }, '');
-    
+
     var yuml = `// {type:class}
 // {direction:topDown}
 [note: You can stick notes on diagrams too!{bg:cornsilk}]
@@ -67,6 +100,7 @@ function writeFile(content, destPath) {
 
 class TypeInfo {
     constructor(prop) {
+        prop
         this.Names = prop.names;
     }
     toString() {
@@ -79,10 +113,11 @@ class TypeInfo {
 }
 
 class ParamInfo {
-    constructor(param) {
-        this.Name = param.name;
-        this.Description = param.description;
-        this.Type = new TypeInfo(param.type);
+    constructor(prop) {
+        prop
+        this.Name = prop.name;
+        this.Description = prop.description;
+        this.Type = new TypeInfo(prop.type);
     }
     toString() {
         return `${this.Name}:${this.Type}`;
@@ -227,7 +262,7 @@ class ClassInfo {
 }
 
 /* nesneler */
-fileScanner()
+fileScanner('C:\\temp\\jsdoc-yuml\\jsdocTestClass.js')
     .then(data => {
         console.log(JSON.stringify(data));
 
@@ -246,7 +281,7 @@ fileScanner()
         }
         classes
         var yuml = createYuml(arrCls);
-        writeFile( yuml, 'uml.yuml');
+        //writeFile(yuml, 'uml.yuml');
     })
 
 

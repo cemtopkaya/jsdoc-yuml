@@ -1,0 +1,2526 @@
+[
+  {
+    "id": "Ihale()",
+    "longname": "Ihale",
+    "name": "Ihale",
+    "kind": "constructor",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "DBType"
+          ]
+        },
+        "name": "client"
+      }
+    ],
+    "order": 1
+  },
+  {
+    "id": "Ihale",
+    "longname": "Ihale",
+    "name": "Ihale",
+    "kind": "class",
+    "scope": "global",
+    "description": "Test sınıf",
+    "meta": {
+      "lineno": 5,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 0
+  },
+  {
+    "id": "IslemTipi",
+    "longname": "IslemTipi",
+    "name": "IslemTipi",
+    "kind": "typedef",
+    "scope": "global",
+    "properties": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "EKLE"
+      },
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "GUNCELLE"
+      },
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "SIL"
+      }
+    ],
+    "meta": {
+      "lineno": 115,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 13
+  },
+  {
+    "id": "IhaleUsulHede",
+    "longname": "IhaleUsulHede",
+    "name": "IhaleUsulHede",
+    "kind": "typedef",
+    "scope": "global",
+    "description": "özel tip adı",
+    "properties": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "description": "adı bilsi",
+        "name": "Adi"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "description": "id bilgisi",
+        "name": "Id"
+      }
+    ],
+    "meta": {
+      "lineno": 156,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 16
+  },
+  {
+    "id": "Ihale#_client",
+    "longname": "Ihale#_client",
+    "name": "_client",
+    "kind": "member",
+    "scope": "instance",
+    "description": "Protected gibi düşünülebilir",
+    "memberof": "Ihale",
+    "type": {
+      "names": [
+        "DBType"
+      ]
+    },
+    "access": "public",
+    "meta": {
+      "lineno": 19,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 2
+  },
+  {
+    "id": "Ihale#f_db_ihale_orjinale_don",
+    "longname": "Ihale#f_db_ihale_orjinale_don",
+    "name": "f_db_ihale_orjinale_don",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtada değiştirilen ihale yeniden orjinal haline döndürülmek isteniyor",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_ihale_id"
+      },
+      {
+        "name": "_tahta_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 28,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 3
+  },
+  {
+    "id": "Ihale#f_db_ihale_silinen_tumu",
+    "longname": "Ihale#f_db_ihale_silinen_tumu",
+    "name": "f_db_ihale_silinen_tumu",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Silinen ihaleleri getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number",
+            "string"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "URLQueryPOCO_Sayfalama"
+          ]
+        },
+        "optional": true,
+        "name": "_sayfalama"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 36,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 4
+  },
+  {
+    "id": "Ihale#f_db_ihale_silinen_toplami",
+    "longname": "Ihale#f_db_ihale_silinen_toplami",
+    "name": "f_db_ihale_silinen_toplami",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Silinen ihale toplamını getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_tahta_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 43,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 5
+  },
+  {
+    "id": "Ihale#f_db_ihale_silinen_idler",
+    "longname": "Ihale#f_db_ihale_silinen_idler",
+    "name": "f_db_ihale_silinen_idler",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Silinen ihale id lerini getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_tahta_id"
+      },
+      {
+        "name": "_sayfalama"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 51,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 6
+  },
+  {
+    "id": "Ihale#f_db_ihaleyi_silinenden_cikar",
+    "longname": "Ihale#f_db_ihaleyi_silinenden_cikar",
+    "name": "f_db_ihaleyi_silinenden_cikar",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Kullanıcı sildiği kayıdı geri almak isteyebilir.",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_ihale_id"
+      },
+      {
+        "name": "_tahta_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 59,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 7
+  },
+  {
+    "id": "Ihale#f_db_paylas",
+    "longname": "Ihale#f_db_paylas",
+    "name": "f_db_paylas",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtalar arasında özel ihalelerin paylaşılması sağlanır.",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "Object"
+          ]
+        },
+        "name": "_paylas"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 66,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 8
+  },
+  {
+    "id": "Ihale#f_db_indexli_tarihine_gore_grupla",
+    "longname": "Ihale#f_db_indexli_tarihine_gore_grupla",
+    "name": "f_db_indexli_tarihine_gore_grupla",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İndexlenmiş (tahtanın anahtarına uygun) ihaleleri tarih aralığında göre indexlenmiş haliyle buluyoruz",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number",
+            "string"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tarih1"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tarih2"
+      },
+      {
+        "type": {
+          "names": [
+            "OptionsIhale"
+          ]
+        },
+        "name": "_opts"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 78,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 9
+  },
+  {
+    "id": "Ihale#f_db_tarihine_gore_grupla",
+    "longname": "Ihale#f_db_tarihine_gore_grupla",
+    "name": "f_db_tarihine_gore_grupla",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtanın görebileceği ihaleleri tarihlerine göre gruplaması sağlanır\rTarih aralığı verilmezse tüm ihaler verilirse tarih aralığındaki ihaleler tarih ve toplamlarına göre array olarak döner",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tarih1"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tarih2"
+      },
+      {
+        "type": {
+          "names": [
+            "OptionsIhale"
+          ]
+        },
+        "name": "_opts"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 89,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 10
+  },
+  {
+    "id": "Ihale#f_db_tumu_tarih_araligindakiler",
+    "longname": "Ihale#f_db_tumu_tarih_araligindakiler",
+    "name": "f_db_tumu_tarih_araligindakiler",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtanın görebileceği ihaleleri tarihlerine göre listeler\rTarih aralığı verilmezse tüm ihaler verilirse tarih aralığındaki ihaleler array olarak döner",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tarih1"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tarih2"
+      },
+      {
+        "type": {
+          "names": [
+            "OptionsIhale"
+          ]
+        },
+        "optional": true,
+        "name": "_opts"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 100,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 11
+  },
+  {
+    "id": "Ihale#f_db_idler_aktif_tarih_araligindakiler",
+    "longname": "Ihale#f_db_idler_aktif_tarih_araligindakiler",
+    "name": "f_db_idler_aktif_tarih_araligindakiler",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtanın görebileceği ihale idlerini tarihlerine göre listeler\rTarih aralığı verilmezse tüm ihale idler verilirse tarih aralığındaki ihale idler array olarak döner",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number",
+            "string"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number",
+            "string"
+          ]
+        },
+        "name": "_tarih1"
+      },
+      {
+        "type": {
+          "names": [
+            "number",
+            "string"
+          ]
+        },
+        "name": "_tarih2"
+      },
+      {
+        "type": {
+          "names": [
+            "boolean"
+          ]
+        },
+        "optional": true,
+        "defaultvalue": false,
+        "name": "_tariheGoreDesc"
+      },
+      {
+        "type": {
+          "names": [
+            "URLQueryPOCO_Sayfalama"
+          ]
+        },
+        "optional": true,
+        "name": "_sayfalama"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 112,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 12
+  },
+  {
+    "id": "Ihale#f_db_log_ekle",
+    "longname": "Ihale#f_db_log_ekle",
+    "name": "f_db_log_ekle",
+    "kind": "function",
+    "scope": "instance",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "_anahtar"
+      },
+      {
+        "type": {
+          "names": [
+            "string",
+            "number",
+            "object"
+          ]
+        },
+        "name": "_nesne"
+      },
+      {
+        "type": {
+          "names": [
+            "string",
+            "number"
+          ]
+        },
+        "name": "_kul_id"
+      },
+      {
+        "type": {
+          "names": [
+            "IslemTipi"
+          ]
+        },
+        "name": "_islem_tipi"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 131,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 14
+  },
+  {
+    "id": "Ihale#f_db_tahta_ihale_rapor_bilgileri",
+    "longname": "Ihale#f_db_tahta_ihale_rapor_bilgileri",
+    "name": "f_db_tahta_ihale_rapor_bilgileri",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İki tarih aralığındaki ihale bilgilerini getirir.\rÖrn. Akdeniz Üniversitesinin ihalelerini listelemek isterse,\r (tahtanın ihaleleri) KESIŞIM (kurumun ihaleleri)\rÖrn. Belli bir ürün için çıkan ihaleleri isterse,\r (tahtanın ihaleleri) KESIŞIM (ürünün ihaleleri)\rÖrn. hem belli bir ürün hem belli bir kurum ihalelleri istenirse,\r (tahtanın ihaleleri) KESIŞIM (ürünün ihaleleri) KESIŞIM (kurumun ihaleleri)",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number",
+            "string"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number",
+            "string"
+          ]
+        },
+        "optional": true,
+        "name": "_kurum_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number",
+            "string",
+            "Array.<number>",
+            "Array.<string>"
+          ]
+        },
+        "optional": true,
+        "name": "op1"
+      },
+      {
+        "type": {
+          "names": [
+            "number",
+            "string",
+            "Array.<number>",
+            "Array.<string>"
+          ]
+        },
+        "optional": true,
+        "name": "op2"
+      },
+      {
+        "type": {
+          "names": [
+            "number",
+            "string",
+            "Array.<number>",
+            "Array.<string>"
+          ]
+        },
+        "optional": true,
+        "defaultvalue": 2,
+        "name": "opdef"
+      },
+      {
+        "type": {
+          "names": [
+            "number",
+            "string",
+            "Array.<number>",
+            "Array.<string>"
+          ]
+        },
+        "name": "man1"
+      },
+      {
+        "type": {
+          "names": [
+            "URLQueryPOCO"
+          ]
+        },
+        "name": "_urlQuery"
+      },
+      {
+        "type": {
+          "names": [
+            "OptionsIhale"
+          ]
+        },
+        "name": "_opts"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "LazyLoadingResponsePOCO"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 153,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 15
+  },
+  {
+    "id": "Ihale#f_db_ihale_usullerini_ekle",
+    "longname": "Ihale#f_db_ihale_usullerini_ekle",
+    "name": "f_db_ihale_usullerini_ekle",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İhale dünyasındaki kayıtları eklememizi sağlar(apiden usuller.json dan veri alınır)",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "Array.<IhaleUsulHede>"
+          ]
+        },
+        "name": "_ihale_usulleri"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 169,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 17
+  },
+  {
+    "id": "Ihale#prom",
+    "longname": "Ihale#prom",
+    "name": "prom",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Ürünün onay durumuna göre teklif fiyatlarını getir geriye [{Durum:string,Tarih:Array,Fiyat:Array}] döner",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_urun_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_onay_durum_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_parabirim_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tarih1"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tarih2"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Promise.<Array.<{Durum:string, Tarih:Array, Fiyat:Array}>>"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 182,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 18
+  },
+  {
+    "id": "Ihale#f_db_ihale_usul_tumu",
+    "longname": "Ihale#f_db_ihale_usul_tumu",
+    "name": "f_db_ihale_usul_tumu",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İhale usullerini döner",
+    "memberof": "Ihale",
+    "params": [],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 189,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 19
+  },
+  {
+    "id": "Ihale#f_db_teklif_tumu",
+    "longname": "Ihale#f_db_teklif_tumu",
+    "name": "f_db_teklif_tumu",
+    "kind": "function",
+    "scope": "instance",
+    "description": "ihaleye ait teklifleri bulur",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_ihale_id"
+      },
+      {
+        "type": {
+          "names": [
+            "URLQueryPOCO"
+          ]
+        },
+        "name": "_arama"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Promise"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 200,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 20
+  },
+  {
+    "id": "Ihale#f_db_yapan_kurum",
+    "longname": "Ihale#f_db_yapan_kurum",
+    "name": "f_db_yapan_kurum",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İhale/leri yapan kurum bilgisini döner",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number",
+            "Array.<number>",
+            "string",
+            "Array.<string>"
+          ]
+        },
+        "name": "ihale_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 207,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 21
+  },
+  {
+    "id": "Ihale#f_db_ihaleyi_yapan_kurum_kontrol",
+    "longname": "Ihale#f_db_ihaleyi_yapan_kurum_kontrol",
+    "name": "f_db_ihaleyi_yapan_kurum_kontrol",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Gelen ihale bilgilerinin kurum bilgilerini getiriyoruz",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "Array.<Ihale>",
+            "Ihale"
+          ]
+        },
+        "name": "_ihaleler"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 214,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 22
+  },
+  {
+    "id": "Ihale#f_db_yapan_kurum_guncelle",
+    "longname": "Ihale#f_db_yapan_kurum_guncelle",
+    "name": "f_db_yapan_kurum_guncelle",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İhaleyi yapan kurum bilgisi değiştirildiğinde genel ihaleyi eziyoruz??",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "ihale_id"
+      },
+      {
+        "name": "kurum_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 222,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 23
+  },
+  {
+    "id": "Ihale#f_db_kalem_tumu",
+    "longname": "Ihale#f_db_kalem_tumu",
+    "name": "f_db_kalem_tumu",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Ihaleye bağlı kalemleri getir. Genel olarak ihalenin kalemleri ve ihalenin tahta üstünde ezilmiş kalemlerini\rbirleştirerek getirir.",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "description": "ihale_id'ye ait satırları getir",
+        "name": "ihale_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "description": "Tahta içinde ihale_id ye ait ezilmiş satırları da getirmek için",
+        "name": "tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "OptionsKalem"
+          ]
+        },
+        "optional": true,
+        "name": "opts"
+      }
+    ],
+    "examples": [
+      "ihale:101:kalemler + tahta:401:ihale:101:kalemleri"
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Promise"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 239,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 24
+  },
+  {
+    "id": "Ihale#f_db_aktif_kalem_idler",
+    "longname": "Ihale#f_db_aktif_kalem_idler",
+    "name": "f_db_aktif_kalem_idler",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İhale ile ilişkili kalem id lerini döner (temp setine ekler> TEMP + \":\" + TAHTA + \":\" + _tahta_id + \":\" + IHALE + \":\" + _ihale_id + \":\" + KALEM)",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_ihale_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 247,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 25
+  },
+  {
+    "id": "Ihale#f_db_kalemleri_by_page",
+    "longname": "Ihale#f_db_kalemleri_by_page",
+    "name": "f_db_kalemleri_by_page",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İhale ile ilişkili kalemleri sayfalama yapısına göre getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_ihale_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "object"
+          ]
+        },
+        "name": "_arama"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 256,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 26
+  },
+  {
+    "id": "Ihale#f_db_ihale_sehri",
+    "longname": "Ihale#f_db_ihale_sehri",
+    "name": "f_db_ihale_sehri",
+    "kind": "function",
+    "scope": "instance",
+    "description": "ihalenin şehrini getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number",
+            "string",
+            "Array.<number>",
+            "Array.<string>"
+          ]
+        },
+        "name": "_sehir_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "SehirPOCO"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 265,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 27
+  },
+  {
+    "id": "Ihale#f_db_ihale_sehir_kontrol",
+    "longname": "Ihale#f_db_ihale_sehir_kontrol",
+    "name": "f_db_ihale_sehir_kontrol",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Gelen ihale veya ihalelerin şehir bilgilerini de ekleyerek geri döner",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "Ihale",
+            "Array.<Ihale>"
+          ]
+        },
+        "name": "_ihaleler"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Ihale",
+            "Array.<Ihale>"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 272,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 28
+  },
+  {
+    "id": "Ihale#f_db_ihale_bolgesi",
+    "longname": "Ihale#f_db_ihale_bolgesi",
+    "name": "f_db_ihale_bolgesi",
+    "kind": "function",
+    "scope": "instance",
+    "description": "ihalenin bölgesini getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number",
+            "string",
+            "Array.<number>",
+            "Array.<string>"
+          ]
+        },
+        "name": "_bolge_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 279,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 29
+  },
+  {
+    "id": "Ihale#f_db_id",
+    "longname": "Ihale#f_db_id",
+    "name": "f_db_id",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtanın id den bilgilerini getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number",
+            "Array.<number>",
+            "string",
+            "Array.<string>"
+          ]
+        },
+        "name": "_ihale_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "OptionsIhale"
+          ]
+        },
+        "optional": true,
+        "name": "_opts"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 288,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 30
+  },
+  {
+    "id": "Ihale#f_db_tahta_ihale_idler_aktif",
+    "longname": "Ihale#f_db_tahta_ihale_idler_aktif",
+    "name": "f_db_tahta_ihale_idler_aktif",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtaya ait ihaleleri varsa idleri döner.\rTahtanın görebileceği tüm ihale idlerini döner(silinmeyen,gizlenmeyen,ezilmeyen yani aktifler)\r(özel ∪ genel) - (silinen ∪ gizlenen ∪ ezilen)\rsmembers tahta:401:ihale",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 300,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 31
+  },
+  {
+    "id": "Ihale#f_db_tumu_genel",
+    "longname": "Ihale#f_db_tumu_genel",
+    "name": "f_db_tumu_genel",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tüm tahtalardan görülebilecek genel ihaleler listesi",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "OptionsIhale"
+          ]
+        },
+        "name": "_opts"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 307,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 32
+  },
+  {
+    "id": "Ihale#f_db_yapilmaTarihi_Araliginda",
+    "longname": "Ihale#f_db_yapilmaTarihi_Araliginda",
+    "name": "f_db_yapilmaTarihi_Araliginda",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İki tarih aralığında yapılma tarihine göre tahta ile ilişkili tüm aktif ihaleleri çeker",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "tarih1_gettime"
+      },
+      {
+        "name": "tarih2_gettime"
+      },
+      {
+        "name": "_tahta_id"
+      },
+      {
+        "name": "_opts"
+      },
+      {
+        "name": "_sayfalama"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "LazyLoadingResponsePOCO"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 318,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 33
+  },
+  {
+    "id": "Ihale#f_db_tahta_ihale_idler_sort_page",
+    "longname": "Ihale#f_db_tahta_ihale_idler_sort_page",
+    "name": "f_db_tahta_ihale_idler_sort_page",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtanın ihalelerini sıralayarak ve sayfalayarak döner.\rTahtanın ihalelerini çek,\rSıralama türüne göre ihalelerin Sorted Set indeksiyle kesiştir\rSıralama yönüne göre(asc/desc)\rSayfalama özelliklerine göre",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_tahta_id"
+      },
+      {
+        "name": "_arama"
+      },
+      {
+        "name": "_opts"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Promise",
+            "LazyLoadingResponse"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 333,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 34
+  },
+  {
+    "id": "Ihale#f_db_ekle",
+    "longname": "Ihale#f_db_ekle",
+    "name": "f_db_ekle",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Ihale kaydedilir ve db'de oluşan şekliyle geri döner",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "IhaleESPOCO"
+          ]
+        },
+        "name": "es_ihale"
+      },
+      {
+        "type": {
+          "names": [
+            "IhaleDBPOCO"
+          ]
+        },
+        "name": "db_ihale"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "kurum_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_kul_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Promise"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 344,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 35
+  },
+  {
+    "id": "Ihale#f_db_ihaleDunyasinda_iptalEdilenIhale_idler",
+    "longname": "Ihale#f_db_ihaleDunyasinda_iptalEdilenIhale_idler",
+    "name": "f_db_ihaleDunyasinda_iptalEdilenIhale_idler",
+    "kind": "function",
+    "scope": "instance",
+    "description": "ihale dünyasında iptal edilen ihale idlerini getirir",
+    "memberof": "Ihale",
+    "params": [],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 352,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 36
+  },
+  {
+    "id": "Ihale#f_db_ihaleDunyasinda_iptalEdilenIhale_idlerTariheGore",
+    "longname": "Ihale#f_db_ihaleDunyasinda_iptalEdilenIhale_idlerTariheGore",
+    "name": "f_db_ihaleDunyasinda_iptalEdilenIhale_idlerTariheGore",
+    "kind": "function",
+    "scope": "instance",
+    "description": "iptal edilen ihale idlerini ihale tarihi aralığında istenirse sayfalı şekliyle getirir(ihale tarihine göre tersten sıralanmış haliyle)",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_tarih1"
+      },
+      {
+        "name": "_tarih2"
+      },
+      {
+        "name": "_sayfalama"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Promise"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 361,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 37
+  },
+  {
+    "id": "Ihale#f_db_ihaleDunyasinda_iptalEdilenIhaleToplamiTariheGore",
+    "longname": "Ihale#f_db_ihaleDunyasinda_iptalEdilenIhaleToplamiTariheGore",
+    "name": "f_db_ihaleDunyasinda_iptalEdilenIhaleToplamiTariheGore",
+    "kind": "function",
+    "scope": "instance",
+    "description": "iptal edilen ihale idlerini ihale tarihi aralığındaki toplamını getirir(toplam iptal edilen ihale sayısı)",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_tarih1"
+      },
+      {
+        "name": "_tarih2"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Promise"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 369,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 38
+  },
+  {
+    "id": "Ihale#f_db_ihaleDunyasinda_iptalEdilenIhalelerTariheGore",
+    "longname": "Ihale#f_db_ihaleDunyasinda_iptalEdilenIhalelerTariheGore",
+    "name": "f_db_ihaleDunyasinda_iptalEdilenIhalelerTariheGore",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İhale dünyasında iptal edilen ihaleleri tarih aralığına göre getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_tarih1"
+      },
+      {
+        "name": "_tarih2"
+      },
+      {
+        "name": "_sayfalama"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "LazyLoadingResponsePOCO"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 378,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 39
+  },
+  {
+    "id": "Ihale#f_db_ekle_genel",
+    "longname": "Ihale#f_db_ekle_genel",
+    "name": "f_db_ekle_genel",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Genel tabloya ihale ekleme.",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "description": "yeni oluşturacaksan 0 varolanı redise eklemeye çalışıyorsak 0 dan farklı bir değer gelir",
+        "name": "_ihale_id"
+      },
+      {
+        "name": "_es_ihale"
+      },
+      {
+        "name": "_db_ihale"
+      },
+      {
+        "name": "_kullanici_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 388,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 40
+  },
+  {
+    "id": "Ihale#f_db_guncelle_ihaleDunyasindan",
+    "longname": "Ihale#f_db_guncelle_ihaleDunyasindan",
+    "name": "f_db_guncelle_ihaleDunyasindan",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Geneldeki ihaleyi güncelliyoruz. Provider: IhaleDunyasi.net",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_es_ihale"
+      },
+      {
+        "name": "_db_ihale"
+      },
+      {
+        "name": "_kul_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 397,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 41
+  },
+  {
+    "id": "Ihale#f_db_ekle_ihaleDunyasindan",
+    "longname": "Ihale#f_db_ekle_ihaleDunyasindan",
+    "name": "f_db_ekle_ihaleDunyasindan",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Genele ihale ekliyoruz. Provider: IhaleDunyasi.net",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_es_ihale"
+      },
+      {
+        "name": "_db_ihale"
+      },
+      {
+        "name": "_kul_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 406,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 42
+  },
+  {
+    "id": "Ihale#f_db_ekle_ihaleDunyasindan2",
+    "longname": "Ihale#f_db_ekle_ihaleDunyasindan2",
+    "name": "f_db_ekle_ihaleDunyasindan2",
+    "kind": "function",
+    "scope": "instance",
+    "description": "ihale dünyasından çekilen ihaleleri redis2 ye ekliyoruz",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "IhaleESPOCO"
+          ]
+        },
+        "name": "_es_ihale"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 413,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 43
+  },
+  {
+    "id": "Ihale#f_db_ekle_elasticten",
+    "longname": "Ihale#f_db_ekle_elasticten",
+    "name": "f_db_ekle_elasticten",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Elastic den çekilen ihale bilgisini redise ekler",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_ihale_id"
+      },
+      {
+        "name": "_es_ihale"
+      },
+      {
+        "name": "_db_ihale"
+      },
+      {
+        "name": "_kul_id"
+      }
+    ],
+    "meta": {
+      "lineno": 422,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 44
+  },
+  {
+    "id": "Ihale#f_db_genel_kontrol",
+    "longname": "Ihale#f_db_genel_kontrol",
+    "name": "f_db_genel_kontrol",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Gelen ihale_id genel ihale setinde ise 1 değilse 0 döner",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_ihale_id"
+      }
+    ],
+    "meta": {
+      "lineno": 430,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 45
+  },
+  {
+    "id": "Ihale#f_db_guncellendi_satir_kontrol",
+    "longname": "Ihale#f_db_guncellendi_satir_kontrol",
+    "name": "f_db_guncellendi_satir_kontrol",
+    "kind": "function",
+    "scope": "instance",
+    "description": "ihalenin satırlarını yenisine kopyala\rönce geneldekileri\rsonra tahtaya eklenmiş özel kalemleri varsa tablonun adını yeni ihale_id si ile değiştir\r\rsatırın onay durumlarını düzenliyoruz",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "yeni_ihale_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "orj_ihale_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 443,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 46
+  },
+  {
+    "id": "Ihale#f_db_tahta_ihale_gizlenen_sil",
+    "longname": "Ihale#f_db_tahta_ihale_gizlenen_sil",
+    "name": "f_db_tahta_ihale_gizlenen_sil",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Kullanıcı tahtada gizlediği ihaleyi tekrardan listede görmek isterse geri alıyoruz",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_ihale_id"
+      }
+    ],
+    "meta": {
+      "lineno": 450,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 47
+  },
+  {
+    "id": "Ihale#f_db_tahta_ihale_gizlenen_ekle",
+    "longname": "Ihale#f_db_tahta_ihale_gizlenen_ekle",
+    "name": "f_db_tahta_ihale_gizlenen_ekle",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Kullanıcı tahtada görmek istemediği ihaleleri gizleyebilir, böylece listede gizlenenler görünmeyecektir.",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_ihale_id"
+      }
+    ],
+    "meta": {
+      "lineno": 457,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 48
+  },
+  {
+    "id": "Ihale#f_db_tahtanin_gizlenen_ihale_idleri",
+    "longname": "Ihale#f_db_tahtanin_gizlenen_ihale_idleri",
+    "name": "f_db_tahtanin_gizlenen_ihale_idleri",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtanın gizlenen ihale idlerini getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      }
+    ],
+    "meta": {
+      "lineno": 463,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 49
+  },
+  {
+    "id": "Ihale#f_db_tahtanin_gizlenen_ihaleleri",
+    "longname": "Ihale#f_db_tahtanin_gizlenen_ihaleleri",
+    "name": "f_db_tahtanin_gizlenen_ihaleleri",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtanın gizlenen ihalelerini getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_ihale_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      }
+    ],
+    "meta": {
+      "lineno": 470,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 50
+  },
+  {
+    "id": "Ihale#f_db_tahtanin_gizlenen_kalem_idleri",
+    "longname": "Ihale#f_db_tahtanin_gizlenen_kalem_idleri",
+    "name": "f_db_tahtanin_gizlenen_kalem_idleri",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtanın gizlenen kalem idlerini getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_ihale_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      }
+    ],
+    "meta": {
+      "lineno": 477,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 51
+  },
+  {
+    "id": "Ihale#f_db_tahtanin_gizlenen_kalemleri",
+    "longname": "Ihale#f_db_tahtanin_gizlenen_kalemleri",
+    "name": "f_db_tahtanin_gizlenen_kalemleri",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtanın gizlenen kalemlerini getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_ihale_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      }
+    ],
+    "meta": {
+      "lineno": 484,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 52
+  },
+  {
+    "id": "Ihale#f_db_tahta_ihale_takip_sil",
+    "longname": "Ihale#f_db_tahta_ihale_takip_sil",
+    "name": "f_db_tahta_ihale_takip_sil",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Kullanıcı tahtada takip ettiği ihalelerden çıkartabilir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_ihale_id"
+      }
+    ],
+    "meta": {
+      "lineno": 491,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 53
+  },
+  {
+    "id": "Ihale#f_db_tahta_ihale_takip_ekle",
+    "longname": "Ihale#f_db_tahta_ihale_takip_ekle",
+    "name": "f_db_tahta_ihale_takip_ekle",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Kullanıcı tahtada takip ettiği ihaleleri belirleyebilir.",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_ihale_id"
+      }
+    ],
+    "meta": {
+      "lineno": 498,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 54
+  },
+  {
+    "id": "Ihale#f_db_takipte_mi",
+    "longname": "Ihale#f_db_takipte_mi",
+    "name": "f_db_takipte_mi",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Genel ihale id takip edilenler setinde ise 1 değilse 0 döner",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "IhalePOCO"
+          ]
+        },
+        "name": "_ihale"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 506,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 55
+  },
+  {
+    "id": "Ihale#f_db_takip_kontrol",
+    "longname": "Ihale#f_db_takip_kontrol",
+    "name": "f_db_takip_kontrol",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Gelen ihale bilgilerinin takipte olup olmadığını belirtiyoruz",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "Array",
+            "Ihale"
+          ]
+        },
+        "name": "_ihaleler"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 514,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 56
+  },
+  {
+    "id": "Ihale#f_db_tahtanin_takipteki_ihale_idleri",
+    "longname": "Ihale#f_db_tahtanin_takipteki_ihale_idleri",
+    "name": "f_db_tahtanin_takipteki_ihale_idleri",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtanın takipteki ihale idlerini getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tahta_id"
+      },
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "_sonucAnahtari"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tarih1"
+      },
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "name": "_tarih2"
+      },
+      {
+        "type": {
+          "names": [
+            "boolean"
+          ]
+        },
+        "name": "_desc"
+      },
+      {
+        "type": {
+          "names": [
+            "URLQueryPOCO_Sayfalama"
+          ]
+        },
+        "name": "_sayfalama"
+      }
+    ],
+    "meta": {
+      "lineno": 525,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 57
+  },
+  {
+    "id": "Ihale#f_db_tahtanin_takipteki_ihaleleri",
+    "longname": "Ihale#f_db_tahtanin_takipteki_ihaleleri",
+    "name": "f_db_tahtanin_takipteki_ihaleleri",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Tahtanın takipteki ihalelerini getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number",
+            "integer"
+          ]
+        },
+        "name": "_tahta_id"
+      }
+    ],
+    "meta": {
+      "lineno": 531,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 58
+  },
+  {
+    "id": "Ihale#f_db_tahtanin_takipteki_kalem_idleri",
+    "longname": "Ihale#f_db_tahtanin_takipteki_kalem_idleri",
+    "name": "f_db_tahtanin_takipteki_kalem_idleri",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İhalenin takipteki kalem idlerini getirir",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_ihale_id"
+      },
+      {
+        "name": "_tahta_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 539,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 59
+  },
+  {
+    "id": "Ihale#f_db_ihalenin_takipteki_kalemleri",
+    "longname": "Ihale#f_db_ihalenin_takipteki_kalemleri",
+    "name": "f_db_ihalenin_takipteki_kalemleri",
+    "kind": "function",
+    "scope": "instance",
+    "description": "İhalenin takipteki kalemlerini buluyoruz",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_ihale_id"
+      },
+      {
+        "name": "_tahta_id"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "LazyLoadingResponsePOCO"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 547,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 60
+  },
+  {
+    "id": "Ihale#f_db_elastic_ihale_idlerini_cek",
+    "longname": "Ihale#f_db_elastic_ihale_idlerini_cek",
+    "name": "f_db_elastic_ihale_idlerini_cek",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Elastic de kayıtlı ihale idlerini çekip elastic:ihale setine ekler",
+    "memberof": "Ihale",
+    "params": [],
+    "meta": {
+      "lineno": 552,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 61
+  },
+  {
+    "id": "Ihale#f_db_ihale_ekle_elastic",
+    "longname": "Ihale#f_db_ihale_ekle_elastic",
+    "name": "f_db_ihale_ekle_elastic",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Rediste olan elastic de olmayan ihale kayıtlarını elastic e ekliyoruz",
+    "memberof": "Ihale",
+    "params": [],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 558,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 62
+  },
+  {
+    "id": "Ihale#f_db_elastic_ihaleleri_cek",
+    "longname": "Ihale#f_db_elastic_ihaleleri_cek",
+    "name": "f_db_elastic_ihaleleri_cek",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Elastic de kayıtlı ihale idlerini çekip elastic:ihale setine ekler",
+    "memberof": "Ihale",
+    "params": [
+      {
+        "name": "_ay"
+      },
+      {
+        "name": "_yil"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 566,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 63
+  },
+  {
+    "id": "Ihale#f_db_ihale_ekle_elastic_to_redis",
+    "longname": "Ihale#f_db_ihale_ekle_elastic_to_redis",
+    "name": "f_db_ihale_ekle_elastic_to_redis",
+    "kind": "function",
+    "scope": "instance",
+    "description": "Elastic de kayıtlı ihaleleri redise ekler",
+    "memberof": "Ihale",
+    "params": [],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Promise"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 572,
+      "filename": "jsdocTestClass.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 64
+  }
+]
