@@ -1,6 +1,6 @@
 const { exec } = require('child_process');
 const fs = require('fs');
-var arrFiles = ['testclass.js', 'testOkul.js'],
+var arrFiles = ['classNokta.js'],//, 'classSinif.js'],
     arrObj = [];
 
 
@@ -28,52 +28,47 @@ async function fileScanner() {
         sonuc.push(...obj);
         console.log("gelişme 1: ", sonuc.length);
     }
-    sonuc
     return sonuc;
 }
 
 /* Classes */
 
+class TypeInfo {
+    constructor(prop) {
+        this.Names = prop.names;
+    }
+    toString() {
+        return this.Names.reduce((accumulator, name, idx, arr) => {
+            return `${accumulator}${name}${idx < arr.length ? ',' : ''}`;
+        });
+    }
+}
+
 class ParamInfo {
     constructor(param) {
         this.Name = param.name;
         this.Description = param.description;
-        this.Type = param.type.names;
+        this.Type = new TypeInfo(param.type);
     }
     toString() {
-        return `${this.Name}:${this.Type.reduce(t => t)}`;
+        return `${this.Name}:${this.Type}`;
     }
 }
 
 class ReturnInfo {
-    constructor(param) {
-        this.Description = param.description;
-        this.Type = param.type.names;
+    constructor(prop) {
+        this.Description = prop.type.description;
+        this.Type = new TypeInfo(prop.type);
     }
 
     toString() {
-        return `${this.Type.reduce(t => t)}`;
-    }
-}
-
-class MethodInfo {
-    constructor(mi) {
-        mi
-        this.Name = mi.name;
-        this.Description = mi.description;
-
-        this.Return = mi.returns ? mi.returns.map(r => new ParamInfo(r)) : null;
-        this.Params = mi.params.map(p => new ParamInfo(p));
-    }
-    toString() {
-        return `${this.Name}:${this.Return.reduce(t => t)}`;
+        return `${this.Type.toString()}`;
     }
 }
 
 class ConstructorInfo {
     constructor(prop) {
         this.Name = prop.name;
-        prop
         this.Params = (prop.params || []).map(p => new ParamInfo(p));
     }
 
@@ -82,17 +77,36 @@ class ConstructorInfo {
     }
 }
 
+class MethodInfo {
+    constructor(mi) {
+        this.Name = mi.name;
+        this.Description = mi.description;
+        this.Return = mi.returns ? mi.returns.map(r => new ParamInfo(r)) : null;
+        mi
+        this.Params = mi.params.map(p => new ParamInfo(p));
+        var a = this.Params
+        a
+    }
+    toString() {
+        var paramList = this.Params.reduce((accumulator, param, idx, arr) => {
+            return `${accumulator}${param}${idx < arr.length ? ',' : ''}):${this.Return.toString()}`
+        });
+        return `${this.Name}(${paramList})`;
+    }
+}
+
 class MemberInfo {
     // "name":"X","kind":"member","scope":"instance","memberof":"Sinif","properties":[{"type":{"names":["number"]}}],
     constructor(prop) {
-        this.Name = prop.name;
         prop
-        this.Type = prop.properties[0].type.names;
+        this.Name = prop.name;
+        this.Type = (prop.properties || []).map(p => p.type.names);
         this.Description = prop.description;
+        this.Return = prop.returns ? new ReturnInfo(prop.returns) : null;
     }
 
     toString() {
-        return `${this.Name}:${this.Type.reduce(t => t.toString())}`;
+        return `${this.Name}:${this.Type.toString()}`;
     }
 }
 
@@ -131,23 +145,40 @@ class ClassInfo {
         methods = props.filter(s => s.kind == KIND.METHOD && s.scope == 'static');
         this.StaticMethods = methods.map(m => new MethodInfo(m));
     }
+
+    toString() {
+        // [User|+Forename+;Surname;+HashedPassword;-Salt|+Login();+Logout()]
+        let sonuc = '[]';
+        let className = this.Name;
+        let members = this.Members.reduce(((accumulator, member, idx, arr) => {
+            return `${accumulator}${member.Name}${idx < arr.length - 1 ? ';' : ''}`;
+        }), '');
+        let methods = this.Methods.reduce(((accumulator, method, idx, arr) => {
+            return `${accumulator}${method.Name}${idx < arr.length - 1 ? ';' : ''}`;
+        }), '');
+        sonuc = `[${className}|${members}|${methods}]`;
+        sonuc
+        return sonuc;
+    }
 }
 
 /* nesneler */
 fileScanner()
     .then(data => {
+        console.log(JSON.stringify(data));
 
         /* find classes */
         var classes = data.filter(s => s.kind === 'class');
-        classes
 
         for (var cl of classes) {
-            cl
             var cls = new ClassInfo(cl);
             var clsMembers = data.filter(d => d.memberof === cls.Name);
 
             cls.parse(clsMembers);
-            cls
+            console.log(JSON.stringify(cls));
+
+            a = cls.toString()
+            a
         }
     })
 

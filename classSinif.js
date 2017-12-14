@@ -1,8 +1,8 @@
 /**
  * Class representing a dot.
- * @extends Point
+ * @extends Nokta
  */
-class Sinif extends Point {
+class Sinif extends Nokta {
     /**
      * Create a dot.
      * @param {number} x - The x value.
@@ -10,9 +10,11 @@ class Sinif extends Point {
      * @param {number} width - The width of the dot, in pixels.
      */
     constructor(x, y, width) {
+        super(x,y)
+        
         // ...
         /** @property {number} */
-        this.X = x;
+        this.Width = width;
     }
 
     /**
