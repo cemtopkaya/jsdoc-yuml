@@ -1,6 +1,6 @@
 const { exec } = require('child_process');
 const fs = require('fs');
-var arrFiles = ['classNokta.js'],//, 'classSinif.js'],
+var arrFiles = ['classNokta.js', 'classSinif.js'],
     arrObj = [];
 
 
@@ -29,6 +29,38 @@ async function fileScanner() {
         console.log("gelişme 1: ", sonuc.length);
     }
     return sonuc;
+}
+
+function createYuml(arrCls) {
+    var classes = arrCls.reduce((accumulator, cls, idx, arr) => {
+        return `${accumulator}${cls}\n`;
+    }, '');
+
+    var inheritances = arrCls.reduce((accumulator, cls, idx, arr) => {
+        if (cls.Inherit) {
+            return `${accumulator}[${cls.Inherit}]^-[${cls.Name}]\n`;
+        }
+        return accumulator;
+    }, '');
+    
+    var yuml = `// {type:class}
+// {direction:topDown}
+[note: You can stick notes on diagrams too!{bg:cornsilk}]
+${classes}
+${inheritances}`;
+
+    return yuml;
+}
+
+function writeFile(content, destPath) {
+    destPath = destPath || (__dirname + '/uml.yuml');
+    fs.writeFileSync(destPath, content, function (err) {
+        if (err) {
+            return console.log(err);
+        }
+
+        console.log("The file was saved!");
+    });
 }
 
 /* Classes */
@@ -131,6 +163,7 @@ class MemberInfo {
 
 class ClassInfo {
     constructor(ci) {
+        this.Inherit = ci.augments ? ci.augments[0] : null;
         this.Id = ci.id;
         this.Name = ci.name;
         this.Description = ci.description;
@@ -200,17 +233,20 @@ fileScanner()
 
         /* find classes */
         var classes = data.filter(s => s.kind === 'class');
-
+        var arrCls = [];
         for (var cl of classes) {
+
+
             var cls = new ClassInfo(cl);
             var clsMembers = data.filter(d => d.memberof === cls.Name);
 
             cls.parse(clsMembers);
+            arrCls.push(cls);
             console.log(JSON.stringify(cls));
-
-            a = cls.toString()
-            a
         }
+        classes
+        var yuml = createYuml(arrCls);
+        writeFile( yuml, 'uml.yuml');
     })
 
 
