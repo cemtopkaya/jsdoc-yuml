@@ -1,5 +1,6 @@
 // {type:class}
 // {direction:topDown}
 [note: You can stick notes on diagrams too!{bg:cornsilk}]
-[Sinif|Sinif();getWidth():number]
 [Nokta|X;Y;Point;Point;<<w/o>>WO;<<r/o>>RO|getCoordinate():Object,number,Promise;setCoordinate(a:number,string,b:string)]
+[Sinif|Width|getWidth():number;setWidth(value:number)]
+[Nokta]^-[Sinif]

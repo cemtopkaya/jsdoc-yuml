@@ -33,7 +33,7 @@ async function fileScanner() {
 
 function createYuml(arrCls) {
     var classes = arrCls.reduce((accumulator, cls, idx, arr) => {
-        return `${accumulator}${cls}\n`;
+        return `${accumulator}${cls}${idx<arr.length-1?'\n':''}`;
     }, '');
 
     var inheritances = arrCls.reduce((accumulator, cls, idx, arr) => {
