@@ -1,8 +1,17 @@
 
 /**
- * @interface hhhh
+ * @interface IHede
  */
-class OptionsBolge {
+class IHede{
+    get publicMethod(){}
+    set publicMethod(v){}
+}
+
+/**
+ * @class
+ * @extends IHede işte implement eder
+ */
+class OptionsBolge extends IHede {
 
     /**
      * @constructor

@@ -112,7 +112,7 @@ function createPlantuml(arrCls) {
 
     var inheritances = arrCls.reduce((accumulator, cls, idx, arr) => {
         if (cls.Inherit) {
-            return `${accumulator}[${cls.Inherit}]^-[${cls.Name}]${idx < arr.length - 1 ? '\n' : ''}`;
+            return `${accumulator}${cls.Inherit}]^-[${cls.Name}]${idx < arr.length - 1 ? '\n' : ''}`;
         }
         return accumulator;
     }, '');
