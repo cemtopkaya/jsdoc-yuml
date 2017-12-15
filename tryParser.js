@@ -104,6 +104,60 @@ ${uses}`;
     return yuml;
 }
 
+
+function createPlantuml(arrCls) {
+    var classes = arrCls.reduce((accumulator, cls, idx, arr) => {
+        return `${accumulator}${cls}${idx < arr.length - 1 ? '\n' : ''}`;
+    }, '');
+
+    var inheritances = arrCls.reduce((accumulator, cls, idx, arr) => {
+        if (cls.Inherit) {
+            return `${accumulator}[${cls.Inherit}]^-[${cls.Name}]${idx < arr.length - 1 ? '\n' : ''}`;
+        }
+        return accumulator;
+    }, '');
+
+    var uses = arrCls.reduce((accumulator, cls, idx, arr) => {
+        console.log(cls.Name);
+        // [HttpContext]uses -.->[Response]        
+        var arrExcludedTypes = [
+            'Array', 'Object', 'object', 'string', 'number', 'any', 'boolean', 'integer', 'String', '*',
+            'Array.<string>', 'Array.<number>', 'Array.<Object>', 'Array.<object>', 'Array.<integer>'
+        ]
+
+        if (cls.Uses.size > 0) {
+            for (var tip of cls.Uses) {
+                if (arrExcludedTypes.indexOf(tip) > -1) continue;
+
+                accumulator = `${accumulator}[${cls.Name}]uses -.->[${tip}]${idx < arr.length - 1 ? '\n' : ''}`;
+            }
+        }
+        return accumulator;
+    }, '');
+
+    var plantuml = `
+@startuml
+sprite $wo [9x9/16z] usA002uu0yG28GG3I08vK44mHZ0O81Z1
+sprite $ro [9x9/16] {
+000000000
+0AAAA0000
+0A000AA00
+0A0000A00
+0A0000A00
+0AAAA0000
+0A00A0000
+0A000A000
+0A0000A00
+}
+
+${classes}
+${inheritances}
+${uses}
+@enduml`;
+
+    return plantuml;
+}
+
 function writeFile(content, destPath) {
     destPath = destPath || (__dirname + '/uml.yuml');
     fs.writeFileSync(destPath, content, function (err) {
@@ -132,7 +186,15 @@ class TypeInfo {
          */
         this.Names = prop.names;
     }
+
     toString() {
+        let sonuc = this.Names.reduce((accumulator, name, idx, arr) => {
+            return `${accumulator}${name}${idx < arr.length - 1 ? ',' : ''}`;
+        }, '');
+        return sonuc;
+    }
+
+    toYumlString() {
         let sonuc = this.Names.reduce((accumulator, name, idx, arr) => {
             return `${accumulator}${name}${idx < arr.length - 1 ? ',' : ''}`;
         }, '');
@@ -160,7 +222,12 @@ class ParamInfo {
             throw e;
         }
     }
+
     toString() {
+        return `${this.Name}:${this.Type}`;
+    }
+
+    toYumlString() {
         return `${this.Name}:${this.Type}`;
     }
 }
@@ -172,6 +239,11 @@ class ReturnInfo {
     }
 
     toString() {
+        let sonuc = `${this.Type}`;
+        return sonuc;
+    }
+
+    toYumlString() {
         let sonuc = `${this.Type}`;
         return sonuc;
     }
@@ -187,6 +259,10 @@ class ConstructorInfo {
     toString() {
         return `${this.Name}(${this.Params.reduce(p => p.toString())})`;
     }
+
+    toYumlString() {
+        return `${this.Name}(${this.Params.reduce(p => p.toString())})`;
+    }
 }
 
 class MethodInfo {
@@ -197,8 +273,38 @@ class MethodInfo {
         this.Return = prop.returns ? prop.returns.map(r => new ReturnInfo(r)) : [];
         this.Params = prop.params.map(p => new ParamInfo(p));
 
+        /**
+         *  @prop {AccessInfo} Access
+         */
+        this.Access = new AccessInfo(prop.access);
     }
+
     toString(config) {
+        config = Object.assign({
+            showParams: true,
+            showReturnTypes: true
+        }, config);
+
+        var paramList = this.Params.reduce((accumulator, param, idx, arr) => {
+            return `${accumulator}${param}${idx < arr.length - 1 ? ',' : ''}`
+        }, '');
+
+        var returnInfo = this.Return.reduce((accumulator, ret, idx, arr) => {
+            return `${accumulator}${ret}${idx < arr.length - 1 ? ' ' : ''}`;
+        }, '');
+
+        // +getUserList(departmentName) > Array.<User>
+        let result = `${this.Access}${this.Name}`;
+
+        if (config.showParams) result += `(${paramList})`;
+        else result += '()';
+
+        if (config.showReturnTypes) result += `:${returnInfo}`;
+
+        return result;
+    }
+
+    toYumlString(config) {
         config = Object.assign({
             showParams: false,
             showReturnTypes: true
@@ -220,6 +326,31 @@ class MethodInfo {
         if (config.showReturnTypes) result += `:${ret}`;
 
         return result;
+    }
+}
+
+class AccessInfo {
+    constructor(access = 'public') {
+
+        this.Access = access;
+    }
+
+    toString() {
+        switch (this.Access) {
+            case 'public':
+                return '+';
+
+            case 'protected':
+                return '#';
+
+            case 'private':
+                return '-';
+
+            case 'package private':
+                return '~';
+            default:
+                return '+';
+        }
     }
 }
 
@@ -292,6 +423,21 @@ class MemberInfo {
          */
         this.Description = ''; // şimdilik boş ama aşağıda propertynin durumuna göre değişecek.
 
+        /**
+         *  @prop {(MemberInfo[])} StaticMembers
+         */
+        this.StaticMembers = [];
+
+        /**
+         *  @prop {(MemberInfo[])} Members
+         */
+        this.Members = [];
+
+        /**
+         *  @prop {AccessInfo} Access
+         */
+        this.Access = new AccessInfo(prop.access);
+
         /* ************************************
           @property | @prop ile süslenmişse
         *************************************/
@@ -339,8 +485,13 @@ class MemberInfo {
             }
         }
     }
-
     toString() {
+        let donusTipi = this.Type.toString();
+        //console.log(donusTipi)
+        return `${this.Access}${this.Name}${(this.Type ? ':' + this.Type : '')}`;
+    }
+
+    toYumlString() {
         let donusTipi = this.Type.toString();
         //console.log(donusTipi)
         return `${this.Name}${(this.Type ? ':' + this.Type : '')}`;
@@ -378,12 +529,16 @@ class ClassInfo {
         this.ConstructorInfo = new ConstructorInfo(constructors);
 
         /* find members */
-        var members = props.filter(s => s.kind == KIND.MEMBER);
+        var members = props.filter(s => s.kind == KIND.MEMBER && s.scope == 'instance');
         this.Members = members.map(m => new MemberInfo(m));
 
         /* find methods */
         var methods = props.filter(s => s.kind == KIND.METHOD && s.scope == 'instance');
         this.Methods = methods.map(m => new MethodInfo(m));
+        
+        /* find static members */
+        var staticMembers = props.filter(s => s.kind == KIND.MEMBER && s.scope == 'static');
+        this.StaticMembers = staticMembers.map(m => new MemberInfo(m));
 
         /* find static methods */
         methods = props.filter(s => s.kind == KIND.METHOD && s.scope == 'static');
@@ -440,6 +595,67 @@ class ClassInfo {
         // [User|+Forename+;Surname;+HashedPassword;-Salt|+Login();+Logout()]
         let sonuc = '[]';
         let className = this.Name;
+function GetSetTeklestir(arr, member){
+//arr.filter(m=>m.Id 
+}
+
+        let members = this.Members.reduce((accumulator, member, idx, arr) => {
+            let r_w_only = '';
+
+            // if the member's Getter=true and there is no member which has Setter=true >> readOnly
+            if (member.Getter && arr.filter(a => a.Id == member.Id).length == 1)
+                r_w_only = '<$ro>';
+
+            // if the member's Getter=true and there is no member which has Setter=true >> readOnly
+            if (member.Setter && arr.filter(a => a.Id == member.Id).length == 1)
+                r_w_only = '<$wo>';
+
+            return `${accumulator}${r_w_only} ${member}${idx < arr.length - 1 ? '\n' : ''}`;
+        }, '');
+        
+        let staticMembers = this.StaticMembers.reduce((accumulator, member, idx, arr) => {
+            let r_w_only = '';
+
+            // if the member's Getter=true and there is no member which has Setter=true >> readOnly
+            var getSetliMember = arr.filter(a => a.Id == member.Id).length == 2;
+            if (member.Getter && !getSetliMember)
+                r_w_only = '<$ro>';
+
+            // if the member's Getter=true and there is no member which has Setter=true >> readOnly
+            if (member.Setter && !getSetliMember)
+                r_w_only = '<$wo>';
+
+            return `${accumulator}{static} ${member.Access}${r_w_only}${member.Getter?'get':'set'}${member.Name}${(member.Type ? ':' + member.Type : '')}${idx < arr.length - 1 ? '\n' : ''}`;
+        }, '');
+
+
+        let methods = this.Methods.reduce((accumulator, method, idx, arr) => {
+            return `${accumulator}${method.toString()}${idx < arr.length - 1 ? '\n' : ''}`;
+        }, '');
+
+
+        let staticMethods = this.StaticMethods.reduce((accumulator, method, idx, arr) => {
+            return `${accumulator}{static} ${method.toString()}${idx < arr.length - 1 ? '\n' : ''}`;
+        }, '');
+
+        return `
+class ${className} {
+.. Static Members ..
+    ${staticMembers}
+.. Members ..
+    ${members}
+.. Static Methods ..
+    ${staticMethods}
+.. Methods ..
+    ${methods}
+}
+`;
+    }
+
+    toYumlString() {
+        // [User|+Forename+;Surname;+HashedPassword;-Salt|+Login();+Logout()]
+        let sonuc = '[]';
+        let className = this.Name;
         let members = this.Members.reduce((accumulator, member, idx, arr) => {
             let r_w_only = '';
 
@@ -464,9 +680,10 @@ class ClassInfo {
 }
 
 /* nesneler */
-fileScanner('C:\\temp\\jsdoc-yuml\\class_es.js')
+fileScanner('C:\\temp\\jsdoc-yuml\\test_OptionsBolge.js')
     .then(data => {
         console.log(JSON.stringify(data));
+
 
         /* find classes */
         var classes = data.filter(s => s.kind === 'class');
@@ -480,10 +697,11 @@ fileScanner('C:\\temp\\jsdoc-yuml\\class_es.js')
             //console.log(JSON.stringify(cls));
         }
 
-        var yuml = createYuml(arrCls);
-        console.log(yuml);
+        //var yuml = createYuml(arrCls);
+        var plantuml = createPlantuml(arrCls);
+        console.log(plantuml);
 
-        writeFile(yuml, 'c:\\temp\\uml.yuml');
+        //writeFile(yuml, 'c:\\temp\\uml.yuml');
     })
 
 
