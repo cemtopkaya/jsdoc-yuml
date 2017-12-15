@@ -498,8 +498,30 @@ class MemberInfo {
     }
 }
 
-class ClassInfo {
+class TipiTip {
+    constructor(prop) {
+
+        /**
+         * @prop {bool} Class Concrete sınıf ise true
+         */
+        this.Class = prop.kind == 'class';
+
+        /**
+         * @prop {bool} Virtual Abstract sınıf ise true
+         */
+        this.Virtual = prop.virtual;
+
+        /**
+         * @prop {bool} Interface Interface sınıf ise true
+         */
+        this.Interface = prop.kind == 'interface';
+
+    }
+}
+
+class ClassInfo extends TipiTip {
     constructor(ci) {
+        super(ci);
         this.Id = ci.id;
         this.Name = ci.name;
         this.Description = ci.description;
@@ -535,7 +557,7 @@ class ClassInfo {
         /* find methods */
         var methods = props.filter(s => s.kind == KIND.METHOD && s.scope == 'instance');
         this.Methods = methods.map(m => new MethodInfo(m));
-        
+
         /* find static members */
         var staticMembers = props.filter(s => s.kind == KIND.MEMBER && s.scope == 'static');
         this.StaticMembers = staticMembers.map(m => new MemberInfo(m));
@@ -594,10 +616,15 @@ class ClassInfo {
     toString() {
         // [User|+Forename+;Surname;+HashedPassword;-Salt|+Login();+Logout()]
         let sonuc = '[]';
-        let className = this.Name;
-function GetSetTeklestir(arr, member){
-//arr.filter(m=>m.Id 
-}
+        let className = `${(
+            this.Interface
+                ? 'interface'
+                : this.Virtual
+                    ? 'abstract class'
+                    : 'class')} ${this.Name}`;
+        function GetSetTeklestir(arr, member) {
+            //arr.filter(m=>m.Id 
+        }
 
         let members = this.Members.reduce((accumulator, member, idx, arr) => {
             let r_w_only = '';
@@ -612,7 +639,7 @@ function GetSetTeklestir(arr, member){
 
             return `${accumulator}${r_w_only} ${member}${idx < arr.length - 1 ? '\n' : ''}`;
         }, '');
-        
+
         let staticMembers = this.StaticMembers.reduce((accumulator, member, idx, arr) => {
             let r_w_only = '';
 
@@ -625,7 +652,7 @@ function GetSetTeklestir(arr, member){
             if (member.Setter && !getSetliMember)
                 r_w_only = '<$wo>';
 
-            return `${accumulator}{static} ${member.Access}${r_w_only}${member.Getter?'get':'set'}${member.Name}${(member.Type ? ':' + member.Type : '')}${idx < arr.length - 1 ? '\n' : ''}`;
+            return `${accumulator}{static} ${member.Access}${r_w_only}${member.Getter ? 'get' : 'set'}${member.Name}${(member.Type ? ':' + member.Type : '')}${idx < arr.length - 1 ? '\n' : ''}`;
         }, '');
 
 
@@ -639,7 +666,7 @@ function GetSetTeklestir(arr, member){
         }, '');
 
         return `
-class ${className} {
+${className} {
 .. Static Members ..
     ${staticMembers}
 .. Members ..
@@ -686,9 +713,9 @@ fileScanner('C:\\temp\\jsdoc-yuml\\test_OptionsBolge.js')
 
 
         /* find classes */
-        var classes = data.filter(s => s.kind === 'class');
+        var tipler = data.filter(s => (s.kind === 'class' || s.kind === 'interface'));
         var arrCls = [];
-        for (var cl of classes) {
+        for (var cl of tipler) {
             var cls = new ClassInfo(cl);
             var clsMembers = data.filter(d => d.memberof === cls.Name);
 
