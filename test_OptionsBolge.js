@@ -1,10 +1,37 @@
 
 /**
+ * @class
+ * @implements OptionsBolge
+ */
+class implemented extends OptionsBolge {
+
+    /**
+     * @constructor
+     */
+    constructor() {
+
+        /**
+         * @property {string} Adi
+         */
+        this.Adi = 'adi bu';
+    }
+
+    /**
+     * @return {number} dönsün dünya
+     */
+    parametresizMetod() {
+
+    }
+}
+
+
+
+/**
  * @interface IHede
  */
-class IHede{
-    get publicMethod(){}
-    set publicMethod(v){}
+class IHede {
+    get publicMethod() { }
+    set publicMethod(v) { }
 }
 
 /**
@@ -15,8 +42,10 @@ class OptionsBolge extends IHede {
 
     /**
      * @constructor
+     * @param {ContructorInjection} enjeksiyon
+     * @param {UsesOlsunTipi} usesParam 
      */
-    constructor() {
+    constructor(enjeksiyon, usesParam) {
 
         /**
          * @prop {string} PubPropString Aciklamam
@@ -29,25 +58,43 @@ class OptionsBolge extends IHede {
          * @private
          */
         this.PrivPropString = '';
+
+
+        /**
+         * @prop {ContructorInjection} PubPropString Aciklamam
+         * @public
+         */
+        this.PubHedeProp = atanacak;
     }
 
     /**
+     * @return {DışarıdanAtananOkunan}
+     */
+    get PubGetSetHede() { }
+
+    /**
+     * @param {DışarıdanAtananOkunan} value
+     */
+    set PubGetSetHede(value) { }
+
+    /**
+     * @return {DışarıdanOkunan} 
+     */
+    get PubGetHede() { }
+
+    /**
      * @public
-     * @param {string} departmentName 
+     * @param {DepartmanTipi} departmentName 
      * @return {(User[])}
      */
-    publicMethod(departmentName) {
-
-    }
+    publicMethod(departmentName) { }
 
     /**
      * @private
      * @param {string} departmentName 
      * @return {(User[])}
      */
-    privateMethod(departmentName) {
-
-    }
+    privateMethod(departmentName) { }
 
     /**
      * @public
@@ -55,56 +102,46 @@ class OptionsBolge extends IHede {
      * @param {string} param1 
      * @return {Option}
      */
-    static getStaticMethod(param1) {
-        return { Adi: 1 };
-    }
+    static getStaticMethod(param1) { }
 
-    
+
     /**
      * @public
      * @static
      * @return {Option}
      */
-   static get ReadOnlyMember() {
-        return { Adi: 1 };
-    }
+    static get ReadOnlyMember() { }
 
-    
+
     /**
      * @public
      * @static
      * @param {string} param1 
      */
-   static set WriteOnlyMember(param1) {
-        return { Adi: 1 };
-    }
+    static set WriteOnlyMember(param1) { }
 
-    
+
     /**
      * @public
      * @static
      * @return {Option}
      */
-   static get StaticReadOnlyMember() {
-        return { Adi: 1 };
-    }
+    static get StaticReadOnlyMember() { }
 
-    
+
     /**
      * @public
      * @static
      * @param {string} param1 
      */
-   static set StaticWriteOnlyMember(param1) {
-        return { Adi: 1 };
-    }
+    static set StaticWriteOnlyMember(param1) { }
 
     /**
      * @static
      * @public
      * @return {string} dönsün dünya
      */
-    static get StaticMember(){
+    static get StaticMember() {
         return 'asdads';
     }
 
@@ -113,7 +150,7 @@ class OptionsBolge extends IHede {
      * @public
      * @param {string} value set dünya
      */
-    static set StaticMember(value){
+    static set StaticMember(value) {
         return 'asdads';
     }
 

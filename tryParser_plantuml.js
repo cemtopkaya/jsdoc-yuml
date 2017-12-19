@@ -64,47 +64,12 @@ async function convertFileToJsdoc(fp) {
     });
 }
 
-function createYuml(arrCls) {
-    var classes = arrCls.reduce((accumulator, cls, idx, arr) => {
-        return `${accumulator}${cls}${idx < arr.length - 1 ? '\n' : ''}`;
-    }, '');
-
-    var inheritances = arrCls.reduce((accumulator, cls, idx, arr) => {
-        if (cls.Inherit) {
-            return `${accumulator}[${cls.Inherit}]^-[${cls.Name}]${idx < arr.length - 1 ? '\n' : ''}`;
-        }
-        return accumulator;
-    }, '');
-
-    var uses = arrCls.reduce((accumulator, cls, idx, arr) => {
-        console.log(cls.Name);
-        // [HttpContext]uses -.->[Response]        
-        var arrExcludedTypes = [
-            'Array', 'Object', 'object', 'string', 'number', 'any', 'boolean', 'integer', 'String', '*',
-            'Array.<string>', 'Array.<number>', 'Array.<Object>', 'Array.<object>', 'Array.<integer>'
-        ]
-
-        if (cls.Uses.size > 0) {
-            for (var tip of cls.Uses) {
-                if (arrExcludedTypes.indexOf(tip) > -1) continue;
-
-                accumulator = `${accumulator}[${cls.Name}]uses -.->[${tip}]${idx < arr.length - 1 ? '\n' : ''}`;
-            }
-        }
-        return accumulator;
-    }, '');
-
-    var yuml = `// {type:class}
-// {direction:topDown}
-[note: You can stick notes on diagrams too!{bg:cornsilk}]
-${classes}
-${inheritances}
-${uses}`;
-
-    return yuml;
-}
 
 
+/**
+ * 
+ * @param {Array} arrCls 
+ */
 function createPlantuml(arrCls) {
     var classes = arrCls.reduce((accumulator, cls, idx, arr) => {
         return `${accumulator}${cls}${idx < arr.length - 1 ? '\n' : ''}`;
@@ -112,28 +77,28 @@ function createPlantuml(arrCls) {
 
     var inheritances = arrCls.reduce((accumulator, cls, idx, arr) => {
         if (cls.Inherit) {
-            return `${accumulator}${cls.Inherit}]^-[${cls.Name}]${idx < arr.length - 1 ? '\n' : ''}`;
+            return `${accumulator}${cls.Inherit}^-${cls.Name}${idx < arr.length - 1 ? '\n' : ''}`;
         }
         return accumulator;
     }, '');
 
-    var uses = arrCls.reduce((accumulator, cls, idx, arr) => {
-        console.log(cls.Name);
-        // [HttpContext]uses -.->[Response]        
-        var arrExcludedTypes = [
-            'Array', 'Object', 'object', 'string', 'number', 'any', 'boolean', 'integer', 'String', '*',
-            'Array.<string>', 'Array.<number>', 'Array.<Object>', 'Array.<object>', 'Array.<integer>'
-        ]
+    // var uses = arrCls.reduce((accumulator, cls, idx, arr) => {
+    //     console.log(cls.Name);
+    //     // [HttpContext]uses -.->[Response]        
+    //     var arrExcludedTypes = [
+    //         'Array', 'Object', 'object', 'string', 'number', 'any', 'boolean', 'integer', 'String', '*',
+    //         'Array.<string>', 'Array.<number>', 'Array.<Object>', 'Array.<object>', 'Array.<integer>'
+    //     ]
 
-        if (cls.Uses.size > 0) {
-            for (var tip of cls.Uses) {
-                if (arrExcludedTypes.indexOf(tip) > -1) continue;
+    //     if (cls.Uses.size > 0) {
+    //         for (var tip of cls.Uses) {
+    //             if (arrExcludedTypes.indexOf(tip) > -1) continue;
 
-                accumulator = `${accumulator}[${cls.Name}]uses -.->[${tip}]${idx < arr.length - 1 ? '\n' : ''}`;
-            }
-        }
-        return accumulator;
-    }, '');
+    //             accumulator = `${accumulator}[${cls.Name}]uses -.->[${tip}]${idx < arr.length - 1 ? '\n' : ''}`;
+    //         }
+    //     }
+    //     return accumulator;
+    // }, '');
 
     var plantuml = `
 @startuml
@@ -151,15 +116,14 @@ sprite $ro [9x9/16] {
 }
 
 ${classes}
-${inheritances}
-${uses}
+
 @enduml`;
 
     return plantuml;
 }
 
 function writeFile(content, destPath) {
-    destPath = destPath || (__dirname + '/uml.yuml');
+    destPath = destPath || (__dirname + '/plantuml.wsd');
     fs.writeFileSync(destPath, content, function (err) {
         if (err) {
             return console.log(err);
@@ -193,18 +157,12 @@ class TypeInfo {
         }, '');
         return sonuc;
     }
-
-    toYumlString() {
-        let sonuc = this.Names.reduce((accumulator, name, idx, arr) => {
-            return `${accumulator}${name}${idx < arr.length - 1 ? ',' : ''}`;
-        }, '');
-        return sonuc;
-    }
 }
 
 class ParamInfo {
     constructor(prop) {
         try {
+            prop
             /**
              * @prop {string} Name
              */
@@ -227,9 +185,6 @@ class ParamInfo {
         return `${this.Name}:${this.Type}`;
     }
 
-    toYumlString() {
-        return `${this.Name}:${this.Type}`;
-    }
 }
 
 class ReturnInfo {
@@ -242,31 +197,68 @@ class ReturnInfo {
         let sonuc = `${this.Type}`;
         return sonuc;
     }
-
-    toYumlString() {
-        let sonuc = `${this.Type}`;
-        return sonuc;
-    }
 }
 
 class ConstructorInfo {
+    /*
+    {
+        "id": "OptionsBolge()",
+        "longname": "OptionsBolge",
+        "name": "OptionsBolge",
+        "kind": "constructor",
+        "memberof": "OptionsBolge",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "ContructorInjection"
+              ]
+            },
+            "name": "enjeksiyon"
+          },
+          {
+            "type": {
+              "names": [
+                "UsesOlsunTipi"
+              ]
+            },
+            "name": "usesParam"
+          }
+        ],
+        "order": 2
+      }
+    */
+    /**
+     * @param {{id:string, longName:string, name:string, kind:'constructor', memberof:string, params:{name:string, type:{names:string[]}}[]}} prop
+     */
     constructor(prop) {
-        this.Id = prop.id;
-        this.Name = prop.name;
-        this.Params = (prop.params || []).map(p => new ParamInfo(p));
+        prop
+
+        this.Id = '';
+        this.Name = '';
+        this.Params = [];
+
+        if (prop) {
+            this.Id = prop.id;
+            this.Name = prop.name;
+            this.Params = prop.params.map(p => {
+                p
+                return new ParamInfo(p)
+            });
+            console.log(this.Params);
+
+        }
     }
 
     toString() {
         return `${this.Name}(${this.Params.reduce(p => p.toString())})`;
     }
 
-    toYumlString() {
-        return `${this.Name}(${this.Params.reduce(p => p.toString())})`;
-    }
 }
 
 class MethodInfo {
     constructor(prop) {
+        /** @prop {number} Id */
         this.Id = prop.id;
         this.Name = prop.name;
         this.Description = prop.description;
@@ -303,30 +295,6 @@ class MethodInfo {
 
         return result;
     }
-
-    toYumlString(config) {
-        config = Object.assign({
-            showParams: false,
-            showReturnTypes: true
-        }, config);
-
-        var ret = this.Return.reduce((accumulator, ret, idx, arr) => {
-            return `${accumulator}${ret}${idx < arr.length - 1 ? ' ' : ''}`;
-        }, '');
-
-        var paramList = this.Params.reduce((accumulator, param, idx, arr) => {
-            return `${accumulator}${param}${idx < arr.length - 1 ? ',' : ''}`
-        }, '');
-
-        let result = this.Name;
-
-        if (config.showParams) result += `(${paramList})`;
-        else result += '()';
-
-        if (config.showReturnTypes) result += `:${ret}`;
-
-        return result;
-    }
 }
 
 class AccessInfo {
@@ -356,9 +324,11 @@ class AccessInfo {
 
 class MemberInfo {
     // "name":"X","kind":"member","scope":"instance","memberof":"Sinif","properties":[{"type":{"names":["number"]}}],
+    /**
+     * 
+     * @param {{name:string,id:string}} prop 
+     */
     constructor(prop) {
-        prop
-
         /* 
         - id ve name bilgisini doğrudan kökten alabiliriz!
 
@@ -393,9 +363,10 @@ class MemberInfo {
          */
 
 
+
         /**
-         * @prop {string} Id
-         */
+        * @property {string} Id AY madiiii
+        */
         this.Id = prop.id;
 
         /**
@@ -490,12 +461,6 @@ class MemberInfo {
         //console.log(donusTipi)
         return `${this.Access}${this.Name}${(this.Type ? ':' + this.Type : '')}`;
     }
-
-    toYumlString() {
-        let donusTipi = this.Type.toString();
-        //console.log(donusTipi)
-        return `${this.Name}${(this.Type ? ':' + this.Type : '')}`;
-    }
 }
 
 class TipiTip {
@@ -519,6 +484,23 @@ class TipiTip {
     }
 }
 
+class InheritanceInfo {
+    constructor(prop) {
+
+        /**@prop {boolean} Implements If it inheirts from interface */
+        this.Implmenets = prop.augments ? true : false;
+
+        /**@prop {boolean} Implements If it inheirts from class */
+        this.Extends = prop.implements ? true : false;
+
+        /** @prop {string} BaseType Base type name*/
+        this.BaseType = prop.augments
+            ? prop.augments[0]
+            : (prop.implements ? prop.implements[0] : null);
+
+    }
+}
+
 class ClassInfo extends TipiTip {
     constructor(ci) {
         super(ci);
@@ -532,23 +514,35 @@ class ClassInfo extends TipiTip {
 
         /* ilişkiler */
         // inheritance
-        this.Inherit = ci.augments ? ci.augments[0] : null;
-        // uses
-        this.Uses = new Set();
+        this.Inheritance = new InheritanceInfo(ci);
+
+        // Dependency
+        this.Dependency = new Set();
+
+        // Aggregation
+        this.Aggregation = new Set();
+
+        // Composition
+        this.Composition = new Set();
 
     }
 
     parse(props) {
         var KIND = {
             CLASS: 'class',
-            CONTRUCTOR: 'constructor',
+            CONSTRUCTOR: 'constructor',
             METHOD: 'function',
             MEMBER: 'member'
         }
 
-        /* find contructors */
-        var constructors = props.filter(s => s.kind == KIND.CONTRUCTOR);
-        this.ConstructorInfo = new ConstructorInfo(constructors);
+        /* find contructor. 1 tane constructor olabilir */
+        var contructorMethod = props.find(prop => prop.kind == KIND.CONSTRUCTOR);
+        contructorMethod
+        this.ConstructorInfo = new ConstructorInfo(contructorMethod);
+
+        console.log(this.ConstructorInfo);
+        console.log(this.Name, ':', this.ConstructorInfo);
+
 
         /* find members */
         var members = props.filter(s => s.kind == KIND.MEMBER && s.scope == 'instance');
@@ -566,55 +560,77 @@ class ClassInfo extends TipiTip {
         methods = props.filter(s => s.kind == KIND.METHOD && s.scope == 'static');
         this.StaticMethods = methods.map(m => new MethodInfo(m));
 
-        // find uses relation
-        this.findUses();
+        this.findAssociations();
     }
 
-    findUses() {
-        // Find in methods
-        this.Methods.forEach(
-            /**
-             * @param {MethodInfo} m
-             */
-            (m, idx, arr) => {
-                /** 
-                 * @type {ParamInfo[]} 
-                 */
-                var params = m.Params;
+    findAssociations() {
 
-                params.forEach(p => {
-                    p.Type.Names.forEach(
-                        n => {
-                            this.Uses.add(n.replace('Array.<', '').replace('>', ''));
-                        }
-                    )
-                });
-            });
+        /* 
+        Dependency Aggregation Composition
+          1. Member tipleri doğrudan Composition olsun
+          2. this.Member diye tanımlıysa, 
+            a) get,set metotları yoktur yani dışarıdan atama yapılabilir -> Aggregation'a at
+            b) değilse Get|Set metotları var
+               ı) Member readyOnly ise ataması ya diğer metotların içinden yapılıyor -> Composition'a at
+                  çünkü metotlara dışarıdan mı değer geldi içlerinde mi new ile mi yaratıldı bilmiyoruz
+              ıı) değilse, set dışarıya açık ve dışarıdan atanabilir -> Aggregation'a at
+          3. Constructor'a parametre olarak geliyorsa o zaman Aggregation'a at
+          4. Metotlara parametre olarak geliyorsa o zaman Aggregation'a at
+          5. Metotlara parametre gelen tipler dışarıdan gelen nesne tipleridir -> Dependency e at (uses)
+        */
 
-        // Find in constructor
-        this.ConstructorInfo.Params.forEach(p => {
-            p.Type.Names.forEach(
-                n => {
-                    this.Uses.add(n.replace('Array.<', '').replace('>', ''));
+        this.Members.forEach((/** @type {MemberInfo} */member) => {
+            for (let name of member.Type.Names) {
+                name = name.replace('Array.<', '').replace('>', '');
+
+                if (!(member.Getter || member.Setter))// getter ve setter false ise this.property diye tanımlı, get|set yok demektir
+                    this.Aggregation.add(name);
+
+                else if (member.Setter) // writable -> dışarıdan atanıyor Aggregationa at
+                    this.Aggregation.add(name);
+
+                else if (member.Getter) {// belki sadece readonly -> writable ? Aggregationa : Compositiona at
+
+                    let setter = this.Members.find(m => m.Name == member.Name && m.Setter);
+                    if (setter)//Setter'ı var -> Aggregationa at
+                        this.Aggregation.add(name);
+                    else
+                        this.Composition.add(name);
                 }
-            )
-        });
 
-        // Find in members
-        this.Members.forEach(member => {
-            try {
-                member.Type.Names.forEach(name => {
-                    this.Uses.add(name.replace('Array.<', '').replace('>', ''));
-                });
-            } catch (e) {
-                console.error("Error has occured looping inside member types");
-                console.log(e.stack);
             }
         });
+
+
+        this.Methods.forEach((/** @type {MethodInfo} */method) => {
+            /**@type {ParamInfo} */
+            let param;
+            for (param of method.Params) {
+                for (let name of param.Type.Names) {
+                    name = name.replace('Array.<', '').replace('>', '');
+                    this.Dependency.add(name);
+                }
+            }
+        });
+
+        this.ConstructorInfo.Params.forEach((/**@type {ParamInfo} */param) => {
+            param
+            for (let name of param.Type.Names) {
+                name = name.replace('Array.<', '').replace('>', '');
+                name
+                this.Dependency.add(name);
+            }
+        });
+
+        console.log(this.Aggregation);
+        console.log(this.Composition);
+        console.log(this.Dependency);
+
     }
 
+
     toString() {
-        // [User|+Forename+;Surname;+HashedPassword;-Salt|+Login();+Logout()]
+        // class|interface TypeName
         let sonuc = '[]';
         let className = `${(
             this.Interface
@@ -622,9 +638,14 @@ class ClassInfo extends TipiTip {
                 : this.Virtual
                     ? 'abstract class'
                     : 'class')} ${this.Name}`;
-        function GetSetTeklestir(arr, member) {
-            //arr.filter(m=>m.Id 
-        }
+
+        // extends|implements TypeName
+        let extends_implements = '';
+        if (this.Inheritance.BaseType)
+            extends_implements = this.Inheritance.Extends
+                ? `extends ${this.Inheritance.BaseType}`
+                : `implements ${this.Inheritance.BaseType}`;
+
 
         let members = this.Members.reduce((accumulator, member, idx, arr) => {
             let r_w_only = '';
@@ -660,14 +681,46 @@ class ClassInfo extends TipiTip {
             return `${accumulator}${method.toString()}${idx < arr.length - 1 ? '\n' : ''}`;
         }, '');
 
-
         let staticMethods = this.StaticMethods.reduce((accumulator, method, idx, arr) => {
             return `${accumulator}{static} ${method.toString()}${idx < arr.length - 1 ? '\n' : ''}`;
         }, '');
 
+        /* *****************************************
+         * Associations - Aggregations - Compositions 
+         * ******************************************/
+        let excludedTypes = [
+            'Array', 'Object', 'object', 'string', 'number', 'any', 'boolean', 'integer', 'String', '*',
+            'Array.<string>', 'Array.<number>', 'Array.<Object>', 'Array.<object>', 'Array.<integer>'
+        ];
+
+        // Dependencies
+        let dependencies = '';
+        for (let d of this.Dependency) {
+            if (excludedTypes.indexOf(d) == -1
+                && !this.Aggregation.has(d)
+                && !this.Composition.has(d))
+                dependencies += `${this.Name} -> ${d}\n`
+        }
+
+        // Aggregations
+        let aggregations = '';
+        for (let a of this.Aggregation) {
+            let isDependent = this.Dependency.has(a);
+            if (excludedTypes.indexOf(a) == -1
+            && !this.Composition.has(a))
+                aggregations += `${this.Name} o-${(isDependent?'>':'-')} ${a}\n`
+        }
+        // Compositions
+        let compositions = '';
+        for (let c of this.Composition) {
+            let isDependent = this.Dependency.has(c);
+            if (excludedTypes.indexOf(c) == -1)
+                compositions += `${this.Name} *-${(isDependent?'>':'-')} ${c}\n`
+        }
+
         return `
-${className} {
-.. Static Members ..
+${className} ${extends_implements} {
+.. CStatic Members ..
     ${staticMembers}
 .. Members ..
     ${members}
@@ -676,33 +729,11 @@ ${className} {
 .. Methods ..
     ${methods}
 }
+
+${dependencies}
+${aggregations}
+${compositions}
 `;
-    }
-
-    toYumlString() {
-        // [User|+Forename+;Surname;+HashedPassword;-Salt|+Login();+Logout()]
-        let sonuc = '[]';
-        let className = this.Name;
-        let members = this.Members.reduce((accumulator, member, idx, arr) => {
-            let r_w_only = '';
-
-            // if the member's Getter=true and there is no member which has Setter=true >> readOnly
-            if (member.Getter && arr.filter(a => a.Id == member.Id).length == 1)
-                r_w_only = '<<r/o>>';
-
-            // if the member's Getter=true and there is no member which has Setter=true >> readOnly
-            if (member.Setter && arr.filter(a => a.Id == member.Id).length == 1)
-                r_w_only = '<<w/o>>';
-
-            return `${accumulator}${r_w_only}${member.Name}${idx < arr.length - 1 ? ';' : ''}`;
-        }, '');
-
-
-        let methods = this.Methods.reduce((accumulator, method, idx, arr) => {
-            return `${accumulator}${method.toString()}${idx < arr.length - 1 ? ';' : ''}`;
-        }, '');
-
-        return `[${className}|${members}|${methods}]`;
     }
 }
 
@@ -724,11 +755,10 @@ fileScanner('C:\\temp\\jsdoc-yuml\\test_OptionsBolge.js')
             //console.log(JSON.stringify(cls));
         }
 
-        //var yuml = createYuml(arrCls);
         var plantuml = createPlantuml(arrCls);
         console.log(plantuml);
 
-        //writeFile(yuml, 'c:\\temp\\uml.yuml');
+        writeFile(plantuml, 'c:\\temp\\plantuml.txt');
     })
 
 
