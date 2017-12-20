@@ -273,7 +273,7 @@ class MethodInfo {
 
     toString(config) {
         config = Object.assign({
-            showParams: true,
+            showParams: false,
             showReturnTypes: true
         }, config);
 
@@ -725,14 +725,22 @@ class ClassInfo extends TipiTip {
 
         return `
 ${className} ${extends_implements} {
-.. CStatic Members ..
-    ${staticMembers}
-.. Members ..
-    ${members}
-.. Static Methods ..
-    ${staticMethods}
-.. Methods ..
-    ${methods}
+    ${(staticMembers
+                ? '.. Static Members ..\n' + staticMembers
+                : ''
+            )}
+    ${(members
+                ? '.. Members ..\n' + members
+                : ''
+            )}
+    ${(staticMethods
+                ? '.. Static Methods ..\n' + staticMethods
+                : ''
+            )}
+    ${(methods
+                ? '.. Methods ..\n' + methods
+                : ''
+            )}
 }
 
 ${dependencies}
