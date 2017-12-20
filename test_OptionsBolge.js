@@ -1,15 +1,36 @@
 
 /**
- * @class
- * @implements OptionsBolge
+ * @interface IHede
  */
-class implemented extends OptionsBolge {
+class IHede {
+    /**
+     * @returns {string} dönüş tipi
+     */
+    get publicMethod() { return 12; }
+
+    set publicMethod(v) { }
+
+    /**
+     * 
+     * @param {string} _a 
+     * @returns {string}
+     */
+    calis(_a) {
+    }
+}
+
+/**
+ * 
+ * @implements {IHede} IHede
+ */
+class implemented extends IHede {
 
     /**
      * @constructor
+     * @returns {void}
      */
     constructor() {
-
+        super();
         /**
          * @property {string} Adi
          */
@@ -17,7 +38,7 @@ class implemented extends OptionsBolge {
     }
 
     /**
-     * @return {number} dönsün dünya
+     * @returns {void} dönsün dünya
      */
     parametresizMetod() {
 
@@ -26,13 +47,6 @@ class implemented extends OptionsBolge {
 
 
 
-/**
- * @interface IHede
- */
-class IHede {
-    get publicMethod() { }
-    set publicMethod(v) { }
-}
 
 /**
  * @class
@@ -64,7 +78,7 @@ class OptionsBolge extends IHede {
          * @prop {ContructorInjection} PubPropString Aciklamam
          * @public
          */
-        this.PubHedeProp = atanacak;
+        this.PubHedeProp = enjeksiyon;
     }
 
     /**

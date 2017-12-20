@@ -1,0 +1,54 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-unused-vars": [1, { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+        "getter-return": 2,
+        "require-jsdoc": [
+            "error",
+            {
+                "require": {
+                    "FunctionDeclaration": true,
+                    "MethodDefinition": true,
+                    "ClassDeclaration": true,
+                    "ArrowFunctionExpression": false,
+                    "FunctionExpression": true
+                }
+            }
+        ],
+        "valid-jsdoc": [
+            "error",
+            {
+                "requireReturn":false,
+                "requireReturnType":true,
+                "prefer": {
+                    "arg": "param",
+                    "argument": "param",
+                    "class": "constructor",
+                    "return": "returns",
+                    "virtual": "abstract"
+                }
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
+    }
+}

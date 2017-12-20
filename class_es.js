@@ -176,7 +176,7 @@ class Bolge {
         }
         /**
          * Protected gibi düşünülebilir
-         * @type {DBType}
+         * @prop {DBType} _client
          */
         this._client = client;
 

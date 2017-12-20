@@ -325,7 +325,8 @@ class AccessInfo {
 class MemberInfo {
     // "name":"X","kind":"member","scope":"instance","memberof":"Sinif","properties":[{"type":{"names":["number"]}}],
     /**
-     * 
+     * Yapıcı metot içinde hede hödö
+     * @constructor
      * @param {{name:string,id:string}} prop 
      */
     constructor(prop) {
@@ -360,7 +361,7 @@ class MemberInfo {
                 @param {number} value aciklama
                 set Y(value) {...}
             diye yazılmış olmalıki   params[0].type   içinden alınsın
-         */
+        */
 
 
 
@@ -387,7 +388,7 @@ class MemberInfo {
         /**
          * @prop {TypeInfo} Type propertynin tip bilgis
          */
-        this.Type = null; // şimdilik null aşağıda propertynin durumuna göre değişecek
+        this.Type = new TypeInfo(); // şimdilik null aşağıda propertynin durumuna göre değişecek
 
         /**
          * @prop {string} Description
@@ -456,6 +457,7 @@ class MemberInfo {
             }
         }
     }
+
     toString() {
         let donusTipi = this.Type.toString();
         //console.log(donusTipi)
@@ -580,6 +582,9 @@ class ClassInfo extends TipiTip {
         */
 
         this.Members.forEach((/** @type {MemberInfo} */member) => {
+            console.log(member);
+            console.log(member.Type);
+            
             for (let name of member.Type.Names) {
                 name = name.replace('Array.<', '').replace('>', '');
 
@@ -738,7 +743,7 @@ ${compositions}
 }
 
 /* nesneler */
-fileScanner('C:\\temp\\jsdoc-yuml\\test_OptionsBolge.js')
+fileScanner('C:\\temp\\jsdoc-yuml\\class_es.js')
     .then(data => {
         console.log(JSON.stringify(data));
 
