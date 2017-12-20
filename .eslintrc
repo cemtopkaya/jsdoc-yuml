@@ -7,10 +7,20 @@
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaVersion": 2017
     },
     "rules": {
-        "no-unused-vars": [1, { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+        "no-unused-vars": [1, {
+             "vars": "local", 
+             "args": "all", 
+             "ignoreRestSiblings": false
+             }],
+        "no-console": [0,{"allow": ["warn", "error","log"]}],
+        "prefer-const": ["error", {
+            "destructuring": "any",
+            "ignoreReadBeforeAssign": false
+        }],
         "getter-return": 2,
         "require-jsdoc": [
             "error",
@@ -18,9 +28,7 @@
                 "require": {
                     "FunctionDeclaration": true,
                     "MethodDefinition": true,
-                    "ClassDeclaration": true,
-                    "ArrowFunctionExpression": false,
-                    "FunctionExpression": true
+                    "ClassDeclaration": true
                 }
             }
         ],
@@ -29,13 +37,15 @@
             {
                 "requireReturn":false,
                 "requireReturnType":true,
+                "requireParamDescription":false,
+                "requireReturnDescription":false,
                 "prefer": {
                     "arg": "param",
                     "argument": "param",
                     "class": "constructor",
                     "return": "returns",
                     "virtual": "abstract"
-                }
+                }  
             }
         ],
         "linebreak-style": [
@@ -43,12 +53,19 @@
             "windows"
         ],
         "quotes": [
-            "error",
+            1,
             "single"
         ],
         "semi": [
-            "error",
+            2,
             "always"
         ]
-    }
+    },
+
+    "overrides": [
+        {
+            "files": "**/src/*.js",
+            "excludedFiles": "temp/jsdoc-yuml/test/calisma.js"
+        }
+    ]
 }

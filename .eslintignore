@@ -1,0 +1,3 @@
+# Modules/kuark-db/src/*
+# !Modules/kuark-db/src/*_es.js
+tryparser*.js

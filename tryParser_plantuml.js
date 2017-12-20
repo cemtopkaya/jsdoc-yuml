@@ -388,7 +388,7 @@ class MemberInfo {
         /**
          * @prop {TypeInfo} Type propertynin tip bilgis
          */
-        this.Type = new TypeInfo(); // şimdilik null aşağıda propertynin durumuna göre değişecek
+        this.Type = null; // şimdilik null aşağıda propertynin durumuna göre değişecek
 
         /**
          * @prop {string} Description
@@ -584,7 +584,7 @@ class ClassInfo extends TipiTip {
         this.Members.forEach((/** @type {MemberInfo} */member) => {
             console.log(member);
             console.log(member.Type);
-            
+
             for (let name of member.Type.Names) {
                 name = name.replace('Array.<', '').replace('>', '');
 
@@ -712,15 +712,15 @@ class ClassInfo extends TipiTip {
         for (let a of this.Aggregation) {
             let isDependent = this.Dependency.has(a);
             if (excludedTypes.indexOf(a) == -1
-            && !this.Composition.has(a))
-                aggregations += `${this.Name} o-${(isDependent?'>':'-')} ${a}\n`
+                && !this.Composition.has(a))
+                aggregations += `${this.Name} o-${(isDependent ? '>' : '-')} ${a}\n`
         }
         // Compositions
         let compositions = '';
         for (let c of this.Composition) {
             let isDependent = this.Dependency.has(c);
             if (excludedTypes.indexOf(c) == -1)
-                compositions += `${this.Name} *-${(isDependent?'>':'-')} ${c}\n`
+                compositions += `${this.Name} *-${(isDependent ? '>' : '-')} ${c}\n`
         }
 
         return `
