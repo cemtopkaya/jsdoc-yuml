@@ -4,7 +4,31 @@ const path = require('path');
 var arrFiles = ['classNokta.js', 'classSinif.js'],
     arrObj = [];
 
-arrFiles = scanFolder('C:\\Projeler\\FMC.Turkiye.Node\\Ihale\\Modules\\kuark-db\\src\\', '_es.js');
+/* Commandline parametreler geliyorsa */
+function setGlobals(args) {
+    switch (args[0]) {
+        case '-f':
+            arrFiles = [args[1]];
+            break;
+        case '-d':
+            const extension = (args[2] == '-e') ? args[3] : '*.*';
+            arrFiles = scanFolder(args[1], extension);
+            break;
+        default:
+            console.log("Parametreler noksan olabilir mi?");
+            arrFiles = ['C:\\temp\\jsdoc-yuml\\test_OptionsBolge.js'];
+            break;
+    }
+}
+process.argv.forEach(function (val, index, array) {
+    console.log(index + ': ' + val);
+});
+var args = process.argv.slice(2);
+if (args) setGlobals(args);
+
+/*---- parametre bilgileri işlendir */
+
+
 
 function scanFolder(startPath, filter) {
     var result = [];
@@ -403,9 +427,9 @@ class MemberInfo {
         /**
          * @prop {TypeInfo} Type propertynin tip bilgis
          */
-        this.Type = prop.type 
-        ? new TypeInfo(prop.type) 
-        : new TypeInfo(); // şimdilik null aşağıda propertynin durumuna göre değişecek
+        this.Type = prop.type
+            ? new TypeInfo(prop.type)
+            : new TypeInfo(); // şimdilik null aşağıda propertynin durumuna göre değişecek
 
         /**
          * @prop {string} Description
@@ -740,24 +764,14 @@ class ClassInfo extends TipiTip {
                 compositions += `${this.Name} *-${(isDependent ? '>' : '-')} ${c}\n`
         }
 
+var uml_staticMembers = `${(staticMembers ? '.. Static Members ..\n' + staticMembers : '' )}`;
+var uml_members = `${(members ? '.. Members ..\n' + members : '' )}`;
+var uml_staticMethods = `${(staticMethods ? '.. Static Methods ..\n' + staticMethods : '' )}`;
+var uml_methods = `${(methods ? '.. Methods ..\n' + methods : '' )}`;
+
         return `
 ${className} ${extends_implements} {
-    ${(staticMembers
-                ? '.. Static Members ..\n' + staticMembers
-                : ''
-            )}
-    ${(members
-                ? '.. Members ..\n' + members
-                : ''
-            )}
-    ${(staticMethods
-                ? '.. Static Methods ..\n' + staticMethods
-                : ''
-            )}
-    ${(methods
-                ? '.. Methods ..\n' + methods
-                : ''
-            )}
+    ${uml_staticMembers} ${uml_members} ${uml_staticMethods} ${uml_methods}
 }
 
 ${dependencies}
@@ -768,7 +782,7 @@ ${compositions}
 }
 
 /* nesneler */
-fileScanner('C:\\temp\\jsdoc-yuml\\test_OptionsBolge.js')
+fileScanner(arrFiles[0])
     .then(data => {
         console.log(JSON.stringify(data));
 
@@ -787,7 +801,7 @@ fileScanner('C:\\temp\\jsdoc-yuml\\test_OptionsBolge.js')
 
         var plantuml = createPlantuml(arrCls);
         console.log(plantuml);
-        
+
         writeFile(plantuml, 'c:\\temp\\plantuml.txt');
     })
 
