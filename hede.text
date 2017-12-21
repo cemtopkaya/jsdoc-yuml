@@ -1,0 +1,836 @@
+[
+  {
+    "id": "Deneme()",
+    "longname": "Deneme",
+    "name": "Deneme",
+    "kind": "constructor",
+    "description": "/**\rCreates an instance of Deneme.",
+    "memberof": "Deneme",
+    "params": [],
+    "order": 8
+  },
+  {
+    "id": "OptionsBolge()",
+    "longname": "OptionsBolge",
+    "name": "OptionsBolge",
+    "kind": "constructor",
+    "memberof": "OptionsBolge",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        },
+        "name": "enjeksiyon"
+      },
+      {
+        "type": {
+          "names": [
+            "*"
+          ]
+        },
+        "name": "usesParam"
+      }
+    ],
+    "order": 17
+  },
+  {
+    "id": "IHede",
+    "longname": "IHede",
+    "name": "IHede",
+    "kind": "interface",
+    "scope": "global",
+    "meta": {
+      "lineno": 2,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 0
+  },
+  {
+    "id": "implemented",
+    "longname": "implemented",
+    "name": "implemented",
+    "kind": "class",
+    "scope": "global",
+    "implements": [
+      "IHede"
+    ],
+    "meta": {
+      "lineno": 30,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 4
+  },
+  {
+    "id": "Deneme",
+    "longname": "Deneme",
+    "name": "Deneme",
+    "kind": "class",
+    "scope": "global",
+    "meta": {
+      "lineno": 55,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 7
+  },
+  {
+    "id": "OptionsBolge",
+    "longname": "OptionsBolge",
+    "name": "OptionsBolge",
+    "kind": "class",
+    "scope": "global",
+    "augments": [
+      "IHede"
+    ],
+    "meta": {
+      "lineno": 104,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 16
+  },
+  {
+    "id": "IHede#publicMethod",
+    "longname": "IHede#publicMethod",
+    "name": "publicMethod",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "IHede",
+    "params": [],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "description": "dönüş tipi"
+      }
+    ],
+    "meta": {
+      "lineno": 9,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 1
+  },
+  {
+    "id": "IHede#publicMethod",
+    "longname": "IHede#publicMethod",
+    "name": "publicMethod",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "IHede",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "v"
+      }
+    ],
+    "meta": {
+      "lineno": 14,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 2
+  },
+  {
+    "id": "implemented#Adi",
+    "longname": "implemented#Adi",
+    "name": "Adi",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "implemented",
+    "properties": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "Adi"
+      }
+    ],
+    "meta": {
+      "lineno": 41,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 5
+  },
+  {
+    "id": "Deneme.Deneme#tipli",
+    "longname": "Deneme.Deneme#tipli",
+    "name": "tipli",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "Deneme",
+    "type": {
+      "names": [
+        "string"
+      ]
+    },
+    "meta": {
+      "lineno": 65,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 9
+  },
+  {
+    "id": "Deneme.Deneme#tipliPublic",
+    "longname": "Deneme.Deneme#tipliPublic",
+    "name": "tipliPublic",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "Deneme",
+    "type": {
+      "names": [
+        "string"
+      ]
+    },
+    "access": "public",
+    "meta": {
+      "lineno": 70,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 10
+  },
+  {
+    "id": "Deneme.Deneme#prayvite",
+    "longname": "Deneme.Deneme#prayvite",
+    "name": "prayvite",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "Deneme",
+    "access": "private",
+    "meta": {
+      "lineno": 75,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 11
+  },
+  {
+    "id": "Deneme.Deneme#tipliPrivate",
+    "longname": "Deneme.Deneme#tipliPrivate",
+    "name": "tipliPrivate",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "Deneme",
+    "type": {
+      "names": [
+        "string"
+      ]
+    },
+    "access": "private",
+    "meta": {
+      "lineno": 80,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 12
+  },
+  {
+    "id": "Deneme.Deneme#properti",
+    "longname": "Deneme.Deneme#properti",
+    "name": "properti",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "Deneme",
+    "properties": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 83,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 13
+  },
+  {
+    "id": "Deneme.Deneme#tipliProperti",
+    "longname": "Deneme.Deneme#tipliProperti",
+    "name": "tipliProperti",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "Deneme",
+    "type": {
+      "names": [
+        "string"
+      ]
+    },
+    "properties": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 89,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 14
+  },
+  {
+    "id": "Deneme.Deneme#duzMember",
+    "longname": "Deneme.Deneme#duzMember",
+    "name": "duzMember",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "Deneme",
+    "type": {
+      "names": [
+        "string"
+      ]
+    },
+    "meta": {
+      "lineno": 94,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 15
+  },
+  {
+    "id": "OptionsBolge#PubPropString",
+    "longname": "OptionsBolge#PubPropString",
+    "name": "PubPropString",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "OptionsBolge",
+    "properties": [
+      {
+        "type": {
+          "names": [
+            "UsesOlsunTipi"
+          ]
+        },
+        "description": "Aciklamam",
+        "name": "PubPropString"
+      }
+    ],
+    "access": "public",
+    "meta": {
+      "lineno": 117,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 18
+  },
+  {
+    "id": "OptionsBolge#PrivPropString",
+    "longname": "OptionsBolge#PrivPropString",
+    "name": "PrivPropString",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "OptionsBolge",
+    "properties": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "description": "Aciklamam",
+        "name": "PrivPropString"
+      }
+    ],
+    "access": "private",
+    "meta": {
+      "lineno": 123,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 19
+  },
+  {
+    "id": "OptionsBolge#PubHedeProp",
+    "longname": "OptionsBolge#PubHedeProp",
+    "name": "PubHedeProp",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "OptionsBolge",
+    "properties": [
+      {
+        "type": {
+          "names": [
+            "ContructorInjection"
+          ]
+        },
+        "description": "Aciklamam",
+        "name": "PubPropString"
+      }
+    ],
+    "access": "public",
+    "meta": {
+      "lineno": 130,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 20
+  },
+  {
+    "id": "OptionsBolge#PubGetSetHede",
+    "longname": "OptionsBolge#PubGetSetHede",
+    "name": "PubGetSetHede",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "OptionsBolge",
+    "params": [],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "DışarıdanAtananOkunan"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 136,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 21
+  },
+  {
+    "id": "OptionsBolge#PubGetSetHede",
+    "longname": "OptionsBolge#PubGetSetHede",
+    "name": "PubGetSetHede",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "OptionsBolge",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "DışarıdanAtananOkunan"
+          ]
+        },
+        "name": "value"
+      }
+    ],
+    "meta": {
+      "lineno": 141,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 22
+  },
+  {
+    "id": "OptionsBolge#PubGetHede",
+    "longname": "OptionsBolge#PubGetHede",
+    "name": "PubGetHede",
+    "kind": "member",
+    "scope": "instance",
+    "memberof": "OptionsBolge",
+    "params": [],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "DışarıdanOkunan"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 146,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 23
+  },
+  {
+    "id": "IHede#calis",
+    "longname": "IHede#calis",
+    "name": "calis",
+    "kind": "function",
+    "scope": "instance",
+    "memberof": "IHede",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "_a"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 21,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 3
+  },
+  {
+    "id": "implemented#parametresizMetod",
+    "longname": "implemented#parametresizMetod",
+    "name": "parametresizMetod",
+    "kind": "function",
+    "scope": "instance",
+    "memberof": "implemented",
+    "params": [],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "void"
+          ]
+        },
+        "description": "dönsün dünya"
+      }
+    ],
+    "meta": {
+      "lineno": 47,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 6
+  },
+  {
+    "id": "OptionsBolge#publicMethod",
+    "longname": "OptionsBolge#publicMethod",
+    "name": "publicMethod",
+    "kind": "function",
+    "scope": "instance",
+    "overrides": "IHede#publicMethod",
+    "memberof": "OptionsBolge",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "DepartmanTipi"
+          ]
+        },
+        "name": "departmentName"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Array.<User>"
+          ]
+        }
+      }
+    ],
+    "access": "public",
+    "meta": {
+      "lineno": 153,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 24
+  },
+  {
+    "id": "OptionsBolge#privateMethod",
+    "longname": "OptionsBolge#privateMethod",
+    "name": "privateMethod",
+    "kind": "function",
+    "scope": "instance",
+    "memberof": "OptionsBolge",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "departmentName"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Array.<User>"
+          ]
+        }
+      }
+    ],
+    "access": "private",
+    "meta": {
+      "lineno": 160,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 25
+  },
+  {
+    "id": "OptionsBolge#calis",
+    "longname": "OptionsBolge#calis",
+    "name": "calis",
+    "kind": "function",
+    "scope": "instance",
+    "inherits": "IHede#calis",
+    "inherited": true,
+    "memberof": "OptionsBolge",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "_a"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "lineno": 21,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 34
+  },
+  {
+    "id": "OptionsBolge.ReadOnlyMember",
+    "longname": "OptionsBolge.ReadOnlyMember",
+    "name": "ReadOnlyMember",
+    "kind": "member",
+    "scope": "static",
+    "memberof": "OptionsBolge",
+    "params": [],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Option"
+          ]
+        }
+      }
+    ],
+    "access": "public",
+    "meta": {
+      "lineno": 176,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 27
+  },
+  {
+    "id": "OptionsBolge.WriteOnlyMember",
+    "longname": "OptionsBolge.WriteOnlyMember",
+    "name": "WriteOnlyMember",
+    "kind": "member",
+    "scope": "static",
+    "memberof": "OptionsBolge",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "param1"
+      }
+    ],
+    "access": "public",
+    "meta": {
+      "lineno": 184,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 28
+  },
+  {
+    "id": "OptionsBolge.StaticReadOnlyMember",
+    "longname": "OptionsBolge.StaticReadOnlyMember",
+    "name": "StaticReadOnlyMember",
+    "kind": "member",
+    "scope": "static",
+    "memberof": "OptionsBolge",
+    "params": [],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Option"
+          ]
+        }
+      }
+    ],
+    "access": "public",
+    "meta": {
+      "lineno": 192,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 29
+  },
+  {
+    "id": "OptionsBolge.StaticWriteOnlyMember",
+    "longname": "OptionsBolge.StaticWriteOnlyMember",
+    "name": "StaticWriteOnlyMember",
+    "kind": "member",
+    "scope": "static",
+    "memberof": "OptionsBolge",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "param1"
+      }
+    ],
+    "access": "public",
+    "meta": {
+      "lineno": 200,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 30
+  },
+  {
+    "id": "OptionsBolge.StaticMember",
+    "longname": "OptionsBolge.StaticMember",
+    "name": "StaticMember",
+    "kind": "member",
+    "scope": "static",
+    "memberof": "OptionsBolge",
+    "params": [],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "description": "dönsün dünya"
+      }
+    ],
+    "access": "public",
+    "meta": {
+      "lineno": 207,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 31
+  },
+  {
+    "id": "OptionsBolge.StaticMember",
+    "longname": "OptionsBolge.StaticMember",
+    "name": "StaticMember",
+    "kind": "member",
+    "scope": "static",
+    "memberof": "OptionsBolge",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "description": "set dünya",
+        "name": "value"
+      }
+    ],
+    "access": "public",
+    "meta": {
+      "lineno": 214,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 32
+  },
+  {
+    "id": "OptionsBolge.PublicStaticMember",
+    "longname": "OptionsBolge.PublicStaticMember",
+    "name": "PublicStaticMember",
+    "kind": "member",
+    "scope": "static",
+    "memberof": "OptionsBolge",
+    "properties": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "StaticMember"
+      }
+    ],
+    "access": "public",
+    "meta": {
+      "lineno": 223,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 33
+  },
+  {
+    "id": "OptionsBolge.getStaticMethod",
+    "longname": "OptionsBolge.getStaticMethod",
+    "name": "getStaticMethod",
+    "kind": "function",
+    "scope": "static",
+    "memberof": "OptionsBolge",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "name": "param1"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Option"
+          ]
+        }
+      }
+    ],
+    "access": "public",
+    "meta": {
+      "lineno": 168,
+      "filename": "test_OptionsBolge.js",
+      "path": "C:\\temp\\jsdoc-yuml"
+    },
+    "order": 26
+  }
+]

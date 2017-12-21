@@ -140,15 +140,8 @@ function writeFile(content, destPath) {
 class TypeInfo {
 
     constructor(prop) {
-        prop
-        if (!prop) {
-            throw new Error('prop bilgisi undefined > prop: ', prop);
-        }
-
-        /**
-         * @prop {(string[])} Names 
-         */
-        this.Names = prop.names;
+        /** @prop {(string[])} */
+        this.Names = prop ? prop.names : [];
     }
 
     toString() {
@@ -322,6 +315,28 @@ class AccessInfo {
     }
 }
 
+/**
+ * prop, property, member, type, public, private ile dekore edilmiş this.XXX diye işaretlenmiş tüm değişkenler
+ * buraya gelebilir. Yani member olmak için sadece this.XXX olması yeterlidir. 
+ * Bu membera ait tip bilgisi eğer prop ya da property ile işartliyse
+ * properties içinde tip bilgisine şöyle erişilebilir:
+ * "properties": [
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        }
+      }
+    ]
+ * type, member ile işaretliyse tip bilgisine şöyle erişilir:
+ * "type": {
+      "names": [
+        "string"
+      ]
+    }
+ * Yapılması gereken properties ya da type bilgisi içindeki tip namelerini almak
+ */
 class MemberInfo {
     // "name":"X","kind":"member","scope":"instance","memberof":"Sinif","properties":[{"type":{"names":["number"]}}],
     /**
@@ -388,7 +403,9 @@ class MemberInfo {
         /**
          * @prop {TypeInfo} Type propertynin tip bilgis
          */
-        this.Type = null; // şimdilik null aşağıda propertynin durumuna göre değişecek
+        this.Type = prop.type 
+        ? new TypeInfo(prop.type) 
+        : new TypeInfo(); // şimdilik null aşağıda propertynin durumuna göre değişecek
 
         /**
          * @prop {string} Description
@@ -751,7 +768,7 @@ ${compositions}
 }
 
 /* nesneler */
-fileScanner('C:\\temp\\jsdoc-yuml\\class_es.js')
+fileScanner('C:\\temp\\jsdoc-yuml\\test_OptionsBolge.js')
     .then(data => {
         console.log(JSON.stringify(data));
 
@@ -770,7 +787,7 @@ fileScanner('C:\\temp\\jsdoc-yuml\\class_es.js')
 
         var plantuml = createPlantuml(arrCls);
         console.log(plantuml);
-
+        
         writeFile(plantuml, 'c:\\temp\\plantuml.txt');
     })
 
